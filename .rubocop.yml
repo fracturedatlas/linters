@@ -578,6 +578,9 @@ Style/CommentAnnotation:
 Style/DateTime:
   Enabled: false
 
+Style/Documentation:
+  Enabled: false
+
 # Warn on empty else statements
 # empty - warn only on empty `else`
 # nil - warn on `else` with nil in it
