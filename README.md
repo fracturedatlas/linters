@@ -2,7 +2,9 @@
 
 This will be the home for all of the linters on Fractured Atlas projects.
 
-To import this Rubocop config into your project, add one of the following lines to your `.rubocop.yml` file:
+## Rubocop
+
+To import the Rubocop config into your project, add one of the following lines to your `.rubocop.yml` file:
 
 - To stay on the latest version:
   - ```yaml
