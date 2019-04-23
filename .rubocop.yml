@@ -965,6 +965,9 @@ Style/StringMethods:
   PreferredMethods:
     intern: to_sym
 
+Style/StructInheritance:
+  Enabled: false
+
 Style/SymbolArray:
   EnforcedStyle: percent
   MinSize: 0
