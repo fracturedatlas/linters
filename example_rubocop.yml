@@ -1,0 +1,16 @@
+inherit_from:
+  - https://raw.githubusercontent.com/fracturedatlas/linters/master/.rubocop.yml
+
+AllCops:
+  # Only use x.y format. Do not include patch version.
+  TargetRubyVersion: 2.6
+  TargetRailsVersion: 5.2
+  # Keep this in sync with .codeclimate.yml in linters
+  Exclude:
+    - "bin/**/*"
+    - "config/**/*"
+    - "db/**/*"
+    - "node_modules/**/*"
+    - "script/**/*"
+    - "spec/**/*"
+    - "vendor/**/*"

@@ -24,7 +24,10 @@ To import the Rubocop config into your project, add one of the following lines t
     ```
   - Do not lock to branches because they may disappear. Tags and SHAs will live forever.
 
+Your copy of `.rubocop.yml` should look like example_rubocop.yml
 You may need to adjust `TargetRubyVersion` and `TargetRailsVersion` based on the current settings for the project.
+
+Make sure to add `.rubocop-http*` to your `.gitignore`.
 
 ## Reek
 
@@ -32,4 +35,4 @@ There is currently no way to have Reek read a shared config apparently but we ca
 
 ## Code Climate
 
-You can just manually copy `.codeclimate.yml` into your project. Please don't update it but instead open a PR against the linters repo. All apps should be in agreement about what rules we're using.
+You can just manually copy `.codeclimate.yml` into your project. Please don't update it (other than pointing to a specific tag or branch) but instead open a PR against the linters repo. All apps should be in agreement about what rules we're using.

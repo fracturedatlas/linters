@@ -2,9 +2,9 @@ version: "2"
 prepare:
   # CodeClimate can't fetch the shared RuboCop config, so we have to prefetch it
   fetch:
-    - url: https://raw.githubusercontent.com/fracturedatlas/linters/rsl-add-reek/.rubocop.yml
-      path: .rubocop-https---raw-githubusercontent-com-fracturedatlas-linters-rsl-add-reek--rubocop-yml
-    - url: https://raw.githubusercontent.com/fracturedatlas/linters/rsl-add-reek/.reek.yml
+    - url: https://raw.githubusercontent.com/fracturedatlas/linters/master/.rubocop.yml
+      path: .rubocop-https---raw-githubusercontent-com-fracturedatlas-linters-master--rubocop-yml
+    - url: https://raw.githubusercontent.com/fracturedatlas/linters/master/.reek.yml
       path: .reek.yml
 plugins:
   brakeman:
@@ -32,6 +32,7 @@ plugins:
   rubocop:
     enabled: true
     channel: rubocop-0-62
+# Keep this in sync with example_rubocop.yml
 exclude_patterns:
 - "bin/"
 - "config/"
