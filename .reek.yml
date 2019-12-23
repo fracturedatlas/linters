@@ -5,3 +5,5 @@ detectors:
     enabled: false
   NilCheck:
     enabled: false
+  UtilityFunction:
+    enabled: false
