@@ -74,18 +74,18 @@ AllCops:
   # Style guide URLs are not displayed in offense messages by default. Change
   # behavior by overriding `DisplayStyleGuide`, or by giving the
   # `-S/--display-style-guide` option.
-  DisplayStyleGuide: false
+  DisplayStyleGuide: true
   # When specifying style guide URLs, any paths and/or fragments will be
   # evaluated relative to the base URL.
   StyleGuideBaseURL: https://rubystyle.guide
   # Extra details are not displayed in offense messages by default. Change
   # behavior by overriding ExtraDetails, or by giving the
   # `-E/--extra-details` option.
-  ExtraDetails: false
+  ExtraDetails: true
   # Additional cops that do not reference a style guide rule may be enabled by
   # default. Change behavior by overriding `StyleGuideCopsOnly`, or by giving
   # the `--only-guide-cops` option.
-  StyleGuideCopsOnly: false
+  StyleGuideCopsOnly: true
   # All cops except the ones configured `Enabled: false` in this file are enabled by default.
   # Change this behavior by overriding either `DisabledByDefault` or `EnabledByDefault`.
   # When `DisabledByDefault` is `true`, all cops in the default configuration
@@ -98,7 +98,7 @@ AllCops:
   # Note that it is invalid to set both EnabledByDefault and DisabledByDefault
   # to true in the same configuration.
   EnabledByDefault: false
-  DisabledByDefault: false
+  DisabledByDefault: true
   # New cops introduced between major versions are set to a special pending status
   # and are not enabled by default with warning message.
   # Change this behavior by overriding either `NewCops: enable` or `NewCops: disable`.
@@ -292,7 +292,7 @@ Layout/ArrayAlignment:
   #
   #     array = [1, 2, 3,
   #       4, 5, 6]
-  EnforcedStyle: with_first_element
+  EnforcedStyle: with_fixed_indentation
   SupportedStyles:
     - with_first_element
     - with_fixed_indentation
@@ -1011,7 +1011,7 @@ Layout/MultilineMethodCallIndentation:
                  that span more than one line.
   Enabled: true
   VersionAdded: '0.49'
-  EnforcedStyle: aligned
+  EnforcedStyle: indented
   SupportedStyles:
     - aligned
     - indented
@@ -1133,7 +1133,7 @@ Layout/SpaceAroundEqualsInParameterDefault:
   StyleGuide: '#spaces-around-equals'
   Enabled: true
   VersionAdded: '0.49'
-  EnforcedStyle: space
+  EnforcedStyle: no_space
   SupportedStyles:
     - space
     - no_space
@@ -1313,7 +1313,7 @@ Layout/SpaceInsideStringInterpolation:
   StyleGuide: '#string-interpolation'
   Enabled: true
   VersionAdded: '0.49'
-  EnforcedStyle: no_space
+  EnforcedStyle: space
   SupportedStyles:
     - space
     - no_space
@@ -1456,7 +1456,7 @@ Lint/DuplicateMethods:
 
 Lint/DuplicateRegexpCharacterClassElement:
   Description: 'Checks for duplicate elements in Regexp character classes.'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.1'
 
 Lint/DuplicateRequire:
@@ -1482,7 +1482,7 @@ Lint/ElseLayout:
 
 Lint/EmptyBlock:
   Description: 'This cop checks for blocks without a body.'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.1'
   AllowComments: true
 
@@ -1682,7 +1682,7 @@ Lint/NextWithoutAccumulator:
 
 Lint/NoReturnInBeginEndBlocks:
   Description: 'Do not `return` inside `begin..end` blocks in assignment contexts.'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.2'
 
 Lint/NonDeterministicRequireOrder:
@@ -1927,14 +1927,14 @@ Lint/SuppressedException:
   VersionChanged: '0.81'
 
 Lint/Syntax:
-  Description: 'Checks syntax error.'
+  Description: 'Checks for syntax errors.'
   Enabled: true
   VersionAdded: '0.9'
 
 
 Lint/ToEnumArguments:
   Description: 'This cop ensures that `to_enum`/`enum_for`, called for the current method, has correct arguments.'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.1'
 
 Lint/ToJSON:
@@ -1965,7 +1965,7 @@ Lint/UnifiedInteger:
 
 Lint/UnmodifiedReduceAccumulator:
   Description: Checks for `reduce` or `inject` blocks that do not update the accumulator each iteration.
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.1'
 
 Lint/UnreachableCode:
@@ -2084,7 +2084,7 @@ Metrics/BlockLength:
   CountComments: false  # count full line comments?
   Max: 25
   CountAsOne: []
-  ExcludedMethods:
+  IgnoredMethods:
     # By default, exclude the `#refine` method, as it tends to have larger
     # associated blocks.
     - refine
@@ -2123,13 +2123,13 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
   Description: 'Avoid methods longer than 10 lines of code.'
   StyleGuide: '#short-methods'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.25'
   VersionChanged: '0.87'
   CountComments: false  # count full line comments?
   Max: 10
   CountAsOne: []
-  ExcludedMethods: []
+  IgnoredMethods: []
 
 Metrics/ModuleLength:
   Description: 'Avoid modules longer than 100 lines of code.'
@@ -2520,7 +2520,7 @@ Style/AndOr:
 Style/ArgumentsForwarding:
   Description: 'Use arguments forwarding.'
   StyleGuide: '#arguments-forwarding'
-  Enabled: pending
+  Enabled: true
   AllowOnlyRestArgument: true
   VersionAdded: '1.1'
 
@@ -2738,7 +2738,7 @@ Style/ClassAndModuleChildren:
   # have the knowledge to perform either operation safely and thus requires
   # manual oversight.
   SafeAutoCorrect: false
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.19'
   #
   # Basically there are two different styles:
@@ -2804,7 +2804,7 @@ Style/ClassVars:
 
 Style/CollectionCompact:
   Description: 'Use `{Array,Hash}#{compact,compact!}` instead of custom logic to reject nils.'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.2'
 
 # Align with the style guide.
@@ -2974,12 +2974,12 @@ Style/DocumentDynamicEvalDefinition:
                 When using `class_eval` (or other `eval`) with string interpolation,
                 add a comment block showing its appearance if interpolated.
   StyleGuide: '#eval-comment-docs'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.1'
 
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   Exclude:
     - 'spec/**/*'
@@ -3065,7 +3065,7 @@ Style/EmptyMethod:
   StyleGuide: '#no-single-line-methods'
   Enabled: true
   VersionAdded: '0.46'
-  EnforcedStyle: compact
+  EnforcedStyle: expanded
   SupportedStyles:
     - compact
     - expanded
@@ -3107,8 +3107,6 @@ Style/ExplicitBlockArgument:
                   that just passes its arguments to another block.
   StyleGuide: '#block-argument'
   Enabled: true
-  # May change the yielding arity.
-  Safe: false
   VersionAdded: '0.89'
 
 Style/ExponentialNotation:
@@ -3183,7 +3181,7 @@ Style/FrozenStringLiteralComment:
   Enabled: true
   VersionAdded: '0.36'
   VersionChanged: '0.79'
-  EnforcedStyle: always
+  EnforcedStyle: never
   SupportedStyles:
     # `always` will always add the frozen string literal comment to a file
     # regardless of the Ruby version or if `freeze` or `<<` are called on a
@@ -3340,7 +3338,6 @@ Style/InfiniteLoop:
   Enabled: true
   VersionAdded: '0.26'
   VersionChanged: '0.61'
-  SafeAutoCorrect: true
 
 Style/InlineComment:
   Description: 'Avoid trailing inline comments.'
@@ -3398,7 +3395,7 @@ Style/KeywordParametersOrder:
 Style/Lambda:
   Description: 'Use the new lambda literal syntax for single-line blocks.'
   StyleGuide: '#lambda-multi-line'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   VersionChanged: '0.40'
   EnforcedStyle: line_count_dependent
@@ -3633,7 +3630,7 @@ Style/NegatedIfElseCondition:
   Description: >-
                 This cop checks for uses of `if-else` and ternary operators with a negated condition
                 which can be simplified by inverting condition and swapping branches.
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.2'
 
 Style/NegatedUnless:
@@ -4297,7 +4294,7 @@ Style/StructInheritance:
 Style/SwapValues:
   Description: 'This cop enforces the use of shorthand-style swapping of 2 variables.'
   StyleGuide: '#values-swapping'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.1'
   SafeAutoCorrect: false
 
@@ -4366,7 +4363,7 @@ Style/TrailingCommaInArguments:
   # parenthesized method calls where each argument is on its own line.
   # If `consistent_comma`, the cop requires a comma after the last argument,
   # for all parenthesized method calls with arguments.
-  EnforcedStyleForMultiline: no_comma
+  EnforcedStyleForMultiline: comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
@@ -4381,7 +4378,7 @@ Style/TrailingCommaInArrayLiteral:
   # but only when each item is on its own line.
   # If `consistent_comma`, the cop requires a comma after the last item of all
   # non-empty, multiline array literals.
-  EnforcedStyleForMultiline: no_comma
+  EnforcedStyleForMultiline: comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
