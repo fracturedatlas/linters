@@ -2414,7 +2414,7 @@ Naming/VariableName:
 Naming/VariableNumber:
   Description: 'Use the configured style when numbering symbols, methods and variables.'
   StyleGuide: '#snake-case-symbols-methods-vars-with-numbers'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.50'
   VersionChanged: '1.2'
   EnforcedStyle: normalcase
