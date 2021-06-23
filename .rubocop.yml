@@ -945,7 +945,7 @@ Layout/MultilineAssignmentLayout:
     - if
     - kwbegin
     - module
-  EnforcedStyle: new_line
+  EnforcedStyle: same_line
   SupportedStyles:
     # Ensures that the assignment operator and the rhs are on the same line for
     # the set of supported types.
@@ -1042,7 +1042,7 @@ Layout/MultilineOperationIndentation:
                  one line.
   Enabled: true
   VersionAdded: '0.49'
-  EnforcedStyle: aligned
+  EnforcedStyle: indented
   SupportedStyles:
     - aligned
     - indented
@@ -1353,7 +1353,7 @@ Lint/AmbiguousOperator:
                  Checks for ambiguous operators in the first argument of a
                  method invocation without parentheses.
   StyleGuide: '#method-invocation-parens'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.17'
   VersionChanged: '0.83'
 
@@ -2068,7 +2068,7 @@ Metrics/AbcSize:
   Reference:
     - http://c2.com/cgi/wiki?AbcMetric
     - https://en.wikipedia.org/wiki/ABC_Software_Metric
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.27'
   VersionChanged: '0.81'
   # The ABC size is a calculated magnitude, so this number can be an Integer or
@@ -2102,7 +2102,7 @@ Metrics/BlockNesting:
 
 Metrics/ClassLength:
   Description: 'Avoid classes longer than 100 lines of code.'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.25'
   VersionChanged: '0.87'
   CountComments: false  # count full line comments?
@@ -2114,7 +2114,7 @@ Metrics/CyclomaticComplexity:
   Description: >-
                  A complexity metric that is strongly correlated to the number
                  of test cases needed to validate a method.
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.25'
   VersionChanged: '0.81'
   IgnoredMethods: []
@@ -2133,7 +2133,7 @@ Metrics/MethodLength:
 
 Metrics/ModuleLength:
   Description: 'Avoid modules longer than 100 lines of code.'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.31'
   VersionChanged: '0.87'
   CountComments: false  # count full line comments?
@@ -2152,7 +2152,7 @@ Metrics/PerceivedComplexity:
   Description: >-
                  A complexity metric geared towards measuring complexity for a
                  human reader.
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.25'
   VersionChanged: '0.81'
   IgnoredMethods: []
@@ -2186,7 +2186,7 @@ Naming/AsciiIdentifiers:
 Naming/BinaryOperatorParameterName:
   Description: 'When defining binary operators, name the argument other.'
   StyleGuide: '#other-arg'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.50'
   VersionChanged: '1.2'
 
@@ -2496,7 +2496,7 @@ Style/AccessorGrouping:
 Style/Alias:
   Description: 'Use alias instead of alias_method.'
   StyleGuide: '#alias-method-lexically'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   VersionChanged: '0.36'
   EnforcedStyle: prefer_alias
@@ -2563,7 +2563,7 @@ Style/AutoResourceCleanup:
 Style/BarePercentLiterals:
   Description: 'Checks if usage of %() or %Q() matches configuration.'
   StyleGuide: '#percent-q-shorthand'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.25'
   EnforcedStyle: bare_percent
   SupportedStyles:
@@ -2599,7 +2599,7 @@ Style/BlockDelimiters:
   Enabled: true
   VersionAdded: '0.30'
   VersionChanged: '0.35'
-  EnforcedStyle: line_count_based
+  EnforcedStyle: braces_for_chaining
   SupportedStyles:
     # The `line_count_based` style enforces braces around single line blocks and
     # do..end around multi-line blocks.
@@ -3039,7 +3039,7 @@ Style/EmptyElse:
   Enabled: true
   VersionAdded: '0.28'
   VersionChanged: '0.32'
-  EnforcedStyle: both
+  EnforcedStyle: empty
   # empty - warn only on empty `else`
   # nil - warn on `else` with nil in it
   # both - warn on empty `else` and `else` with `nil` in it
@@ -3178,7 +3178,7 @@ Style/FrozenStringLiteralComment:
   Description: >-
                  Add the frozen_string_literal comment to the top of files
                  to help transition to frozen string literals by default.
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.36'
   VersionChanged: '0.79'
   EnforcedStyle: never
@@ -3773,7 +3773,7 @@ Style/NumericPredicate:
   # object. Switching these methods has to be done with knowledge of the types
   # of the variables which rubocop doesn't have.
   SafeAutoCorrect: false
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.42'
   VersionChanged: '0.59'
   EnforcedStyle: predicate
@@ -4287,7 +4287,7 @@ Style/Strip:
 Style/StructInheritance:
   Description: 'Checks for inheritance from Struct.new.'
   StyleGuide: '#no-extend-struct-new'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.29'
   VersionChanged: '0.86'
 
@@ -4533,7 +4533,7 @@ Style/YodaCondition:
   Description: 'Forbid or enforce yoda conditions.'
   Reference: 'https://en.wikipedia.org/wiki/Yoda_conditions'
   Enabled: true
-  EnforcedStyle: forbid_for_all_comparison_operators
+  EnforcedStyle: require_for_all_comparison_operators
   SupportedStyles:
     # check all comparison operators
     - forbid_for_all_comparison_operators
