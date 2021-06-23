@@ -572,7 +572,7 @@ Layout/EndAlignment:
   # situations, `end` should still be aligned with the keyword.
   # The value `start_of_line` means that `end` should be aligned with the start
   # of the line which the matching keyword appears on.
-  EnforcedStyleAlignWith: keyword
+  EnforcedStyleAlignWith: start_of_line
   SupportedStylesAlignWith:
     - keyword
     - variable
@@ -2396,7 +2396,7 @@ Naming/PredicateName:
 
 Naming/RescuedExceptionsVariableName:
   Description: 'Use consistent rescued exceptions variables naming.'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.67'
   VersionChanged: '0.68'
   PreferredName: e
@@ -4363,7 +4363,7 @@ Style/TrailingCommaInArguments:
   # parenthesized method calls where each argument is on its own line.
   # If `consistent_comma`, the cop requires a comma after the last argument,
   # for all parenthesized method calls with arguments.
-  EnforcedStyleForMultiline: comma
+  EnforcedStyleForMultiline: consistent_comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
@@ -4532,8 +4532,8 @@ Style/WordArray:
 Style/YodaCondition:
   Description: 'Forbid or enforce yoda conditions.'
   Reference: 'https://en.wikipedia.org/wiki/Yoda_conditions'
-  Enabled: true
-  EnforcedStyle: require_for_all_comparison_operators
+  Enabled: false
+  EnforcedStyle: forbid_for_equality_operators_only
   SupportedStyles:
     # check all comparison operators
     - forbid_for_all_comparison_operators
