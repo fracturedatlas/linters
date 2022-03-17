@@ -732,7 +732,7 @@ Layout/HashAlignment:
   Description: >-
     Align the elements of a hash literal if they span more than
     one line.
-  Enabled: true
+  Enabled: false
   AllowMultipleStyles: true
   VersionAdded: '0.49'
   VersionChanged: '0.77'
