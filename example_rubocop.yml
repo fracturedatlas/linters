@@ -3,8 +3,8 @@ inherit_from:
 
 AllCops:
   # Only use x.y format. Do not include patch version.
-  TargetRubyVersion: 2.6
-  TargetRailsVersion: 5.2
+  TargetRubyVersion: 3.1
+  TargetRailsVersion: 7.1
   # Keep this in sync with .codeclimate.yml in linters
   Exclude:
     - "bin/**/*"
