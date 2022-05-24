@@ -2780,7 +2780,7 @@ Naming/VariableNumber:
   Enabled: true
   VersionAdded: '0.50'
   VersionChanged: '1.4'
-  EnforcedStyle: normalcase
+  EnforcedStyle: snake_case
   SupportedStyles:
     - snake_case
     - normalcase
