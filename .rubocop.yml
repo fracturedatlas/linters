@@ -2759,7 +2759,7 @@ Naming/RescuedExceptionsVariableName:
   Enabled: true
   VersionAdded: '0.67'
   VersionChanged: '0.68'
-  PreferredName: e
+  PreferredName: error
 
 Naming/VariableName:
   Description: 'Use the configured style when naming variables.'
