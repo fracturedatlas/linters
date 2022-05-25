@@ -9,9 +9,9 @@ To import the Rubocop config into your project, add one of the following lines t
 - To stay on the latest version (recommended):
   - ```yaml
     inherit_from:
-      - https://raw.githubusercontent.com/fracturedatlas/linters/master/.rubocop.yml
+      - https://raw.githubusercontent.com/fracturedatlas/linters/main/.rubocop.yml
     ```
-- To lock to a specific version, replace `master` above with the commit SHA or git tag to lock to.
+- To lock to a specific version, replace `main` above with the commit SHA or git tag to lock to.
   - For example, to lock to a version:
     ```yaml
     inherit_from:
