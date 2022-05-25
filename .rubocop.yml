@@ -2795,11 +2795,14 @@ Naming/VariableNumber:
     - rfc2822      # Time#rfc2822
     - rfc3339      # DateTime.rfc3339
     - last4        # Stripe
-    - status_501c3 # FS
-    - became_501c3 # FS
-    - prior_501c3  # FS
-    - checkpayee_is_501c3 # FS
-  AllowedPatterns: []
+    - h1           # HTML
+    - h2           # HTML
+    - h3           # HTML
+    - h4           # HTML
+    - h5           # HTML
+    - h6           # HTML
+  AllowedPatterns:
+    - '_501c3'
 
 #################### Security ##############################
 
