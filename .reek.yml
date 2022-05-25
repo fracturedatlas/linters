@@ -7,6 +7,10 @@ detectors:
     enabled: false
   UtilityFunction:
     enabled: false
+  TooManyConstants:
+    enabled: false
+  Attribute:
+    enabled: false
 # Taken from https://github.com/troessner/reek/blob/master/README.md#working-with-rails
 directories:
   "app/controllers":
