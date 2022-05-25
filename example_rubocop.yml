@@ -1,5 +1,5 @@
 inherit_from:
-  - https://raw.githubusercontent.com/fracturedatlas/linters/master/.rubocop.yml
+  - https://raw.githubusercontent.com/fracturedatlas/linters/main/.rubocop.yml
 
 AllCops:
   # Only use x.y format. Do not include patch version.
