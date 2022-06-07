@@ -3252,7 +3252,7 @@ Style/CombinableLoops:
 Style/CommandLiteral:
   Description: 'Use `` or %x around command literals.'
   StyleGuide: '#percent-x'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.30'
   EnforcedStyle: backticks
   # backticks: Always use backticks.
