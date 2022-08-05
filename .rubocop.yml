@@ -3897,7 +3897,7 @@ Style/KeywordParametersOrder:
 Style/Lambda:
   Description: 'Use the new lambda literal syntax for single-line blocks.'
   StyleGuide: '#lambda-multi-line'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   VersionChanged: '0.40'
   EnforcedStyle: line_count_dependent
