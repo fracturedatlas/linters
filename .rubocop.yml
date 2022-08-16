@@ -3206,7 +3206,7 @@ Style/CollectionCompact:
 Style/CollectionMethods:
   Description: 'Preferred collection methods.'
   StyleGuide: '#map-find-select-reduce-include-size'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.9'
   VersionChanged: '1.7'
   Safe: false
@@ -3219,8 +3219,8 @@ Style/CollectionMethods:
   PreferredMethods:
     collect: 'map'
     collect!: 'map!'
-    inject: 'reduce'
-    detect: 'find'
+    reduce: 'inject'
+    find: 'detect'
     find_all: 'select'
     member?: 'include?'
   # Methods in this array accept a final symbol as an implicit block
