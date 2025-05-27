@@ -1,7 +1,12 @@
 # Common configuration.
-# Taken from rubocop 1.75.6
+# Taken from rubocop 1.75.7
 
-plugins: rubocop-rails
+# Plugins used by all Fractured Atlas apps
+plugins:
+  - rubocop-rails
+  - rubocop-rspec
+
+# Common configuration.
 
 AllCops:
   RubyInterpreters:
@@ -3705,7 +3710,9 @@ Style/CommentedKeyword:
 Style/ComparableBetween:
   Description: 'Enforces the use of `Comparable#between?` instead of logical comparison.'
   Enabled: pending
+  Safe: false
   VersionAdded: '1.74'
+  VersionChanged: '1.75'
   StyleGuide: '#ranges-or-between'
 
 Style/ComparableClamp:
