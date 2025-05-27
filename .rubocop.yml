@@ -120,7 +120,7 @@ AllCops:
   # the `--enable-pending-cops` command-line option.
   # When `NewCops` is `disable`, pending cops are disabled in bulk. Can be overridden by
   # the `--disable-pending-cops` command-line option.
-  NewCops: pending
+  NewCops: enable
   # Enables the result cache if `true`. Can be overridden by the `--cache` command
   # line option.
   UseCache: true
@@ -3257,7 +3257,8 @@ Style/ArgumentsForwarding:
   Description: 'Use arguments forwarding.'
   StyleGuide: '#arguments-forwarding'
   Enabled: pending
-  AllowOnlyRestArgument: true
+  # Obsolete if TargetRubyVersion >= 3.2
+  # AllowOnlyRestArgument: true
   UseAnonymousForwarding: true
   RedundantRestArgumentNames:
     - args
