@@ -6,6 +6,12 @@ plugins:
   - rubocop-rails
   - rubocop-rspec
 
+# Changes from rubocop-rails defaults
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Rails/InverseOf:
+  Enabled: false
+
 # Common configuration.
 
 AllCops:
@@ -582,9 +588,10 @@ Layout/DotPosition:
     - leading
     - trailing
 
+# Updated Enabled to false
 Layout/ElseAlignment:
   Description: 'Align elses and elsifs correctly.'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.49'
 
 Layout/EmptyComment:
@@ -1215,13 +1222,14 @@ Layout/MultilineMethodCallBraceLayout:
     - new_line
     - same_line
 
+# Updated EnforcedStyle to indented
 Layout/MultilineMethodCallIndentation:
   Description: >-
                  Checks indentation of method calls with the dot operator
                  that span more than one line.
   Enabled: true
   VersionAdded: '0.49'
-  EnforcedStyle: aligned
+  EnforcedStyle: indented
   SupportedStyles:
     - aligned
     - indented
@@ -1254,13 +1262,14 @@ Layout/MultilineMethodParameterLineBreaks:
   VersionAdded: '1.32'
   AllowMultilineFinalElement: false
 
+# Updated EnforcedStyle to indented
 Layout/MultilineOperationIndentation:
   Description: >-
                  Checks indentation of binary operations that span more than
                  one line.
   Enabled: true
   VersionAdded: '0.49'
-  EnforcedStyle: aligned
+  EnforcedStyle: indented
   SupportedStyles:
     - aligned
     - indented
@@ -1549,12 +1558,13 @@ Layout/SpaceInsideReferenceBrackets:
     - space
     - no_space
 
+# Updated EnforcedStyle to space
 Layout/SpaceInsideStringInterpolation:
   Description: 'Checks for padding/surrounding spaces inside string interpolation.'
   StyleGuide: '#string-interpolation'
   Enabled: true
   VersionAdded: '0.49'
-  EnforcedStyle: no_space
+  EnforcedStyle: space
   SupportedStyles:
     - space
     - no_space
@@ -2696,6 +2706,7 @@ Metrics/AbcSize:
   CountRepeatedAttributes: true
   Max: 17
 
+# Modified CountAsOne
 Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'
   Enabled: true
@@ -2703,7 +2714,7 @@ Metrics/BlockLength:
   VersionChanged: '1.5'
   CountComments: false  # count full line comments?
   Max: 25
-  CountAsOne: []
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   AllowedMethods:
     # By default, exclude the `#refine` method, as it tends to have larger
     # associated blocks.
@@ -2722,14 +2733,15 @@ Metrics/BlockNesting:
   CountModifierForms: false
   Max: 3
 
+# Updated to 300 lines and modified CountAsOne
 Metrics/ClassLength:
-  Description: 'Avoid classes longer than 100 lines of code.'
+  Description: 'Avoid classes longer than 300 lines of code.'
   Enabled: true
   VersionAdded: '0.25'
   VersionChanged: '0.87'
   CountComments: false  # count full line comments?
-  Max: 100
-  CountAsOne: []
+  Max: 300
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
 
 Metrics/CollectionLiteralLength:
   Description: 'Checks for `Array` or `Hash` literals with many entries.'
@@ -2749,6 +2761,7 @@ Metrics/CyclomaticComplexity:
   AllowedPatterns: []
   Max: 7
 
+# Updated CountAsOne to ['array', 'hash', 'heredoc', 'method_call']
 Metrics/MethodLength:
   Description: 'Avoid methods longer than 10 lines of code.'
   StyleGuide: '#short-methods'
@@ -2757,10 +2770,11 @@ Metrics/MethodLength:
   VersionChanged: '1.5'
   CountComments: false  # count full line comments?
   Max: 10
-  CountAsOne: []
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   AllowedMethods: []
   AllowedPatterns: []
 
+# Updated CountAsOne to ['array', 'hash', 'heredoc', 'method_call']
 Metrics/ModuleLength:
   Description: 'Avoid modules longer than 100 lines of code.'
   Enabled: true
@@ -2768,7 +2782,7 @@ Metrics/ModuleLength:
   VersionChanged: '0.87'
   CountComments: false  # count full line comments?
   Max: 100
-  CountAsOne: []
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
 
 Metrics/ParameterLists:
   Description: 'Avoid parameter lists longer than three or four parameters.'
@@ -3054,6 +3068,7 @@ Naming/MethodParameterName:
   # Forbidden names that will register an offense
   ForbiddenNames: []
 
+# Remove has_/have_ from NamePrefix and ForbiddenPrefixes
 Naming/PredicateName:
   Description: 'Check the names of predicate methods.'
   StyleGuide: '#bool-methods-qmark'
@@ -3063,14 +3078,10 @@ Naming/PredicateName:
   # Predicate name prefixes.
   NamePrefix:
     - is_
-    - has_
-    - have_
     - does_
   # Predicate name prefixes that should be removed.
   ForbiddenPrefixes:
     - is_
-    - has_
-    - have_
     - does_
   # Predicate names which, despite having a forbidden prefix, or no `?`,
   # should still be accepted
@@ -3109,13 +3120,14 @@ Naming/VariableName:
   ForbiddenIdentifiers: []
   ForbiddenPatterns: []
 
+# Updated EnforcedStyle to snake_case and added 501c3, 1099, 1042s to AllowedPatterns
 Naming/VariableNumber:
   Description: 'Use the configured style when numbering symbols, methods and variables.'
   StyleGuide: '#snake-case-symbols-methods-vars-with-numbers'
   Enabled: true
   VersionAdded: '0.50'
   VersionChanged: '1.4'
-  EnforcedStyle: normalcase
+  EnforcedStyle: snake_case
   SupportedStyles:
     - snake_case
     - normalcase
@@ -3132,7 +3144,11 @@ Naming/VariableNumber:
     - rfc2822      # Time#rfc2822
     - rfc3339      # DateTime.rfc3339
     - x86_64       # Allowed by default as an underscore separated CPU architecture name
-  AllowedPatterns: []
+  AllowedPatterns:
+    - 501c3
+    - 1099
+    - 1042s
+
 
 #################### Security ##############################
 
@@ -3842,9 +3858,10 @@ Style/DocumentDynamicEvalDefinition:
   VersionAdded: '1.1'
   VersionChanged: '1.3'
 
+# Updated Enabled to false
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   AllowedConstants: []
   Exclude:
@@ -4130,11 +4147,12 @@ Style/FormatStringToken:
   AllowedMethods: []
   AllowedPatterns: []
 
+# Updated Enabled to false
 Style/FrozenStringLiteralComment:
   Description: >-
                  Add the frozen_string_literal comment to the top of files
                  to help transition to frozen string literals by default.
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.36'
   VersionChanged: '0.79'
   EnforcedStyle: always
@@ -5763,6 +5781,7 @@ Style/TrailingBodyOnModule:
   Enabled: true
   VersionAdded: '0.53'
 
+# Updated EnforcedStyleForMultiline to comma
 Style/TrailingCommaInArguments:
   Description: 'Checks for trailing comma in argument lists.'
   StyleGuide: '#no-trailing-params-comma'
@@ -5772,12 +5791,13 @@ Style/TrailingCommaInArguments:
   # parenthesized method calls where each argument is on its own line.
   # If `consistent_comma`, the cop requires a comma after the last argument,
   # for all parenthesized method calls with arguments.
-  EnforcedStyleForMultiline: no_comma
+  EnforcedStyleForMultiline: comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
     - no_comma
 
+# Updated EnforcedStyleForMultiline to comma
 Style/TrailingCommaInArrayLiteral:
   Description: 'Checks for trailing comma in array literals.'
   StyleGuide: '#no-trailing-array-commas'
@@ -5789,7 +5809,7 @@ Style/TrailingCommaInArrayLiteral:
   # array literals.
   # If `diff_comma`, the cop requires a comma after the last item of all non-empty, multiline array
   # literals, but only when that last item immediately precedes a newline.
-  EnforcedStyleForMultiline: no_comma
+  EnforcedStyleForMultiline: comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
@@ -5802,6 +5822,7 @@ Style/TrailingCommaInBlockArgs:
   Safe: false
   VersionAdded: '0.81'
 
+# Updated EnforcedStyleForMultiline to true
 Style/TrailingCommaInHashLiteral:
   Description: 'Checks for trailing comma in hash literals.'
   Enabled: true
@@ -5811,7 +5832,7 @@ Style/TrailingCommaInHashLiteral:
   # hash literals.
   # If `diff_comma`, the cop requires a comma after the last item of all non-empty, multiline hash
   # literals, but only when that last item immediately precedes a newline.
-  EnforcedStyleForMultiline: no_comma
+  EnforcedStyleForMultiline: comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
