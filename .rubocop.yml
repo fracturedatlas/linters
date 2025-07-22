@@ -3,8 +3,11 @@
 
 # Plugins used by all Fractured Atlas apps
 plugins:
+  - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 # Changes from rubocop-rails defaults
 Rails/HasManyOrHasOneDependent:
@@ -14,6 +17,7 @@ Rails/InverseOf:
 
 # Common configuration.
 
+# Updated ActiveSupportExtensionsEnabled to true
 AllCops:
   RubyInterpreters:
     - ruby
@@ -183,7 +187,7 @@ AllCops:
     rubocop-factory_bot: [factory_bot, factory_bot_rails]
     rubocop-rspec_rails: [rspec-rails]
   # Enable/Disable checking the methods extended by Active Support.
-  ActiveSupportExtensionsEnabled: false
+  ActiveSupportExtensionsEnabled: true
   # Future version of Ruby will freeze string literals by default.
   # This allows to opt in early, for example when enabled through RUBYOPT.
   # For now this will behave as if set to false but in future ruby versions
@@ -479,6 +483,7 @@ Layout/BeginEndAlignment:
     - begin
   Severity: warning
 
+# Updated EnforcedStyleAlignWith to start_of_block
 Layout/BlockAlignment:
   Description: 'Align block ends correctly.'
   Enabled: true
@@ -488,7 +493,7 @@ Layout/BlockAlignment:
   # The value `start_of_line` means it should be aligned with the whole
   # expression's starting line.
   # The value `either` means both are allowed.
-  EnforcedStyleAlignWith: either
+  EnforcedStyleAlignWith: start_of_block
   SupportedStylesAlignWith:
     - either
     - start_of_block
@@ -499,13 +504,14 @@ Layout/BlockEndNewline:
   Enabled: true
   VersionAdded: '0.49'
 
+# Updated EnforcedStyle to end
 Layout/CaseIndentation:
   Description: 'Indentation of when in a case/(when|in)/[else/]end.'
   StyleGuide: '#indent-when-to-case'
   Enabled: true
   VersionAdded: '0.49'
   VersionChanged: '1.16'
-  EnforcedStyle: case
+  EnforcedStyle: end
   SupportedStyles:
     - case
     - end
@@ -515,21 +521,65 @@ Layout/CaseIndentation:
   # This only matters if `IndentOneStep` is `true`.
   IndentationWidth: ~
 
+# Customized completely
 Layout/ClassStructure:
   Description: 'Enforces a configured order of definitions within a class body.'
   StyleGuide: '#consistent-classes'
-  Enabled: false
+  Enabled: true
   SafeAutoCorrect: false
   VersionAdded: '0.52'
   VersionChanged: '1.53'
   Categories:
+    active_record_associations:
+      - belongs_to
+      - has_many
+      - has_one
+    active_record_callbacks:
+      - before_create
+      - before_save
+      - before_update
+      - before_destroy
+      - before_commit
+      - after_create
+      - after_save
+      - after_update
+      - after_destroy
+      - after_commit
+    active_record_scopes:
+      - scope
+    active_record_validations:
+      - validates
+      - validate
+    active_storage_associations:
+      - has_many_attached
+      - has_one_attached
+    attribute_macros:
+      - attr_accessor
+      - attr_reader
+      - attr_writer
+    custom_macros:
+      - money_attribute
+    delegations:
+      - delegate
     module_inclusion:
       - include
       - prepend
       - extend
+    rubygem_macros:
+      - comma
+      - has_paper_trail
+      - pg_search_scope
   ExpectedOrder:
     - module_inclusion
     - constants
+    - active_record_associations
+    - active_storage_associations
+    - active_record_callbacks
+    - active_record_validations
+    - delegations
+    - active_record_scopes
+    - custom_macros
+    - rubygem_macros
     - public_class_methods
     - initializer
     - public_methods
@@ -600,8 +650,8 @@ Layout/EmptyComment:
   AutoCorrect: contextual
   VersionAdded: '0.53'
   VersionChanged: '1.61'
-  AllowBorderComment: true
-  AllowMarginComment: true
+  AllowBorderComment: false
+  AllowMarginComment: false
 
 Layout/EmptyLineAfterGuardClause:
   Description: 'Add empty line after guard clause.'
@@ -732,6 +782,7 @@ Layout/EmptyLinesAroundModuleBody:
     - empty_lines_special
     - no_empty_lines
 
+# Updated EnforcedStyleAlignWith to start_of_line and disabled autocorrect
 Layout/EndAlignment:
   Description: 'Align ends correctly.'
   Enabled: true
@@ -743,11 +794,12 @@ Layout/EndAlignment:
   # situations, `end` should still be aligned with the keyword.
   # The value `start_of_line` means that `end` should be aligned with the start
   # of the line which the matching keyword appears on.
-  EnforcedStyleAlignWith: keyword
+  EnforcedStyleAlignWith: start_of_line
   SupportedStylesAlignWith:
     - keyword
     - variable
     - start_of_line
+  AutoCorrect: false
   Severity: warning
 
 Layout/EndOfLine:
@@ -804,6 +856,7 @@ Layout/FirstArgumentIndentation:
   # but it can be overridden by setting this parameter.
   IndentationWidth: ~
 
+# Updated SupportedStyles to consistent
 Layout/FirstArrayElementIndentation:
   Description: >-
                  Checks the indentation of the first element in an array
@@ -822,7 +875,7 @@ Layout/FirstArrayElementIndentation:
   #
   # The value `align_brackets` means that the indentation of the first element
   # shall always be relative to the position of the opening bracket.
-  EnforcedStyle: special_inside_parentheses
+  EnforcedStyle: consistent
   SupportedStyles:
     - special_inside_parentheses
     - consistent
@@ -839,6 +892,7 @@ Layout/FirstArrayElementLineBreak:
   VersionAdded: '0.49'
   AllowMultilineFinalElement: false
 
+# Updated SupportedStyles to consistent
 Layout/FirstHashElementIndentation:
   Description: 'Checks the indentation of the first key in a hash literal.'
   Enabled: true
@@ -855,7 +909,7 @@ Layout/FirstHashElementIndentation:
   #
   # The value `align_braces` means that the indentation of the first key shall
   # always be relative to the position of the opening brace.
-  EnforcedStyle: special_inside_parentheses
+  EnforcedStyle: consistent
   SupportedStyles:
     - special_inside_parentheses
     - consistent
@@ -1085,13 +1139,14 @@ Layout/LineContinuationSpacing:
     - space
     - no_space
 
+# Updated EnforcedStyle to indented
 Layout/LineEndStringConcatenationIndentation:
   Description: >-
                  Checks the indentation of the next line after a line that
                  ends with a string literal and a backslash.
   Enabled: pending
   VersionAdded: '1.18'
-  EnforcedStyle: aligned
+  EnforcedStyle: indented
   SupportedStyles:
     - aligned
     - indented
@@ -1139,11 +1194,12 @@ Layout/MultilineArrayBraceLayout:
     - new_line
     - same_line
 
+# Updated Enabled to true
 Layout/MultilineArrayLineBreaks:
   Description: >-
                  Checks that each item in a multi-line array literal
                  starts on a separate line.
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.67'
   AllowMultilineFinalElement: false
 
@@ -1190,19 +1246,21 @@ Layout/MultilineHashBraceLayout:
     - new_line
     - same_line
 
+# Updated Enabled to true
 Layout/MultilineHashKeyLineBreaks:
   Description: >-
                  Checks that each item in a multi-line hash literal
                  starts on a separate line.
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.67'
   AllowMultilineFinalElement: false
 
+# Updated Enabled to true
 Layout/MultilineMethodArgumentLineBreaks:
   Description: >-
                  Checks that each argument in a multi-line method call
                  starts on a separate line.
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.67'
   AllowMultilineFinalElement: false
 
@@ -1254,11 +1312,12 @@ Layout/MultilineMethodDefinitionBraceLayout:
     - new_line
     - same_line
 
+# Updated Enabled to true
 Layout/MultilineMethodParameterLineBreaks:
   Description: >-
                  Checks that each parameter in a multi-line method definition
                  starts on a separate line.
-  Enabled: false
+  Enabled: true
   VersionAdded: '1.32'
   AllowMultilineFinalElement: false
 
@@ -1277,6 +1336,7 @@ Layout/MultilineOperationIndentation:
   # but it can be overridden by setting this parameter.
   IndentationWidth: ~
 
+# Updated EnforcedStyle to with_fixed_indentation
 Layout/ParameterAlignment:
   Description: >-
                  Align the parameters of a method definition if they span more
@@ -1298,7 +1358,7 @@ Layout/ParameterAlignment:
   #
   #     def method_foo(a,
   #       b)
-  EnforcedStyle: with_first_parameter
+  EnforcedStyle: with_fixed_indentation
   SupportedStyles:
     - with_first_parameter
     - with_fixed_indentation
@@ -1365,6 +1425,7 @@ Layout/SpaceAroundBlockParameters:
     - space
     - no_space
 
+# Updted EnforcedStyle to no_space
 Layout/SpaceAroundEqualsInParameterDefault:
   Description: >-
                  Checks that the equals signs in parameter default assignments
@@ -1373,7 +1434,7 @@ Layout/SpaceAroundEqualsInParameterDefault:
   StyleGuide: '#spaces-around-equals'
   Enabled: true
   VersionAdded: '0.49'
-  EnforcedStyle: space
+  EnforcedStyle: no_space
   SupportedStyles:
     - space
     - no_space
@@ -1422,10 +1483,11 @@ Layout/SpaceBeforeBlockBraces:
     - no_space
   VersionChanged: '0.52'
 
+# Updated Enabled to true
 Layout/SpaceBeforeBrackets:
   Description: 'Checks for receiver with a space before the opening brackets.'
   StyleGuide: '#space-in-brackets-access'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.7'
 
 Layout/SpaceBeforeComma:
@@ -1998,11 +2060,12 @@ Lint/HashNewWithKeywordArgumentsAsDefault:
   Enabled: pending
   VersionAdded: '1.69'
 
+# Updated Enabled to true
 Lint/HeredocMethodCallPosition:
   Description: >-
                  Checks for the ordering of a method call where
                  the receiver of the call is a HEREDOC.
-  Enabled: false
+  Enabled: true
   StyleGuide: '#heredoc-method-calls'
   VersionAdded: '0.68'
 
@@ -2689,6 +2752,7 @@ Lint/Void:
 
 #################### Metrics ###############################
 
+# Updated CountRepeatedAttributes to false
 Metrics/AbcSize:
   Description: >-
                  A calculated magnitude based on number of assignments,
@@ -2703,7 +2767,7 @@ Metrics/AbcSize:
   # a Float.
   AllowedMethods: []
   AllowedPatterns: []
-  CountRepeatedAttributes: true
+  CountRepeatedAttributes: false
   Max: 17
 
 # Modified CountAsOne
@@ -2837,12 +2901,13 @@ Naming/BinaryOperatorParameterName:
   VersionAdded: '0.50'
   VersionChanged: '1.2'
 
+# Updated EnforcedStyle to explicit
 Naming/BlockForwarding:
   Description: 'Use anonymous block forwarding.'
   StyleGuide: '#block-forwarding'
   Enabled: pending
   VersionAdded: '1.24'
-  EnforcedStyle: anonymous
+  EnforcedStyle: explicit
   SupportedStyles:
     - anonymous
     - explicit
@@ -2976,9 +3041,10 @@ Naming/HeredocDelimiterNaming:
   ForbiddenDelimiters:
     - !ruby/regexp '/(^|\s)(EO[A-Z]{1}|END)(\s|$)/i'
 
+# Updated Enabled to true
 Naming/InclusiveLanguage:
   Description: 'Recommend the use of inclusive language instead of problematic terms.'
-  Enabled: false
+  Enabled: true
   VersionAdded: '1.18'
   VersionChanged: '1.49'
   CheckIdentifiers: true
@@ -2999,8 +3065,11 @@ Naming/InclusiveLanguage:
       Suggestions:
         - denylist
         - block
+    master:
+      Regex: !ruby/regexp '/master/'
+      Suggestions: ['main']
     slave:
-      WholeWord: true
+      Regex: !ruby/regexp '/slave/'
       Suggestions: ['replica', 'secondary', 'follower']
 
 Naming/MemoizedInstanceVariableName:
@@ -3038,6 +3107,7 @@ Naming/MethodName:
     - __send__
   ForbiddenPatterns: []
 
+# Updated AllowedNames
 Naming/MethodParameterName:
   Description: >-
                  Checks for method parameter names that contain capital letters,
@@ -3050,20 +3120,10 @@ Naming/MethodParameterName:
   AllowNamesEndingInNumbers: true
   # Allowed names that will not register an offense
   AllowedNames:
-    - as
-    - at
-    - by
     - cc
     - db
     - id
-    - if
-    - in
     - io
-    - ip
-    - of
-    - 'on'
-    - os
-    - pp
     - to
   # Forbidden names that will register an offense
   ForbiddenNames: []
@@ -3098,12 +3158,13 @@ Naming/PredicateName:
   Exclude:
     - 'spec/**/*'
 
+# Updated PreferredName to error
 Naming/RescuedExceptionsVariableName:
   Description: 'Use consistent rescued exceptions variables naming.'
   Enabled: true
   VersionAdded: '0.67'
   VersionChanged: '0.68'
-  PreferredName: e
+  PreferredName: error
 
 Naming/VariableName:
   Description: 'Use the configured style when naming variables.'
@@ -3255,6 +3316,7 @@ Style/AmbiguousEndlessMethodDefinition:
   Enabled: pending
   VersionAdded: '1.68'
 
+# Updated EnforcedStyle to always
 Style/AndOr:
   Description: 'Use &&/|| instead of and/or.'
   StyleGuide: '#no-and-or-or'
@@ -3264,7 +3326,7 @@ Style/AndOr:
   VersionChanged: '1.21'
   # Whether `and` and `or` are banned only in conditionals (conditionals)
   # or completely (always).
-  EnforcedStyle: conditionals
+  EnforcedStyle: always
   SupportedStyles:
     - always
     - conditionals
@@ -3299,11 +3361,12 @@ Style/ArrayCoercion:
   Enabled: false
   VersionAdded: '0.88'
 
+# Updated Enabled to true
 Style/ArrayFirstLast:
   Description: 'Use `arr.first` and `arr.last` instead of `arr[0]` and `arr[-1]`.'
   References:
     - '#first-and-last'
-  Enabled: false
+  Enabled: true
   VersionAdded: '1.58'
   Safe: false
 
@@ -3336,17 +3399,19 @@ Style/Attr:
   VersionAdded: '0.9'
   VersionChanged: '0.12'
 
+# Updated Enabled to true
 Style/AutoResourceCleanup:
   Description: 'Suggests the usage of an auto resource cleanup version of a method (if available).'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.30'
 
+# Updated EnforcedStyle to percent_q
 Style/BarePercentLiterals:
   Description: 'Checks if usage of %() or %Q() matches configuration.'
   StyleGuide: '#percent-q-shorthand'
   Enabled: true
   VersionAdded: '0.25'
-  EnforcedStyle: bare_percent
+  EnforcedStyle: percent_q
   SupportedStyles:
     - percent_q
     - bare_percent
@@ -3605,10 +3670,11 @@ Style/ClassMethods:
   VersionAdded: '0.9'
   VersionChanged: '0.20'
 
+# Updated Enabled to true
 Style/ClassMethodsDefinitions:
   Description: 'Enforces using `def self.method_name` or `class << self` to define class methods.'
   StyleGuide: '#def-self-class-methods'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.89'
   EnforcedStyle: def_self
   SupportedStyles:
@@ -3629,11 +3695,11 @@ Style/CollectionCompact:
   VersionChanged: '1.3'
   AllowedReceivers: []
 
-# Align with the style guide.
+# Updated Enabled to true and some other stuff
 Style/CollectionMethods:
   Description: 'Preferred collection methods.'
   StyleGuide: '#map-find-select-reduce-include-size'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.9'
   VersionChanged: '1.7'
   Safe: false
@@ -3647,15 +3713,15 @@ Style/CollectionMethods:
     collect: 'map'
     collect!: 'map!'
     collect_concat: 'flat_map'
-    inject: 'reduce'
-    detect: 'find'
+    reduce: 'inject'
+    find: 'detect'
     find_all: 'select'
     member?: 'include?'
   # Methods in this array accept a final symbol as an implicit block
   # eg. `inject(:+)`
   MethodsAcceptingSymbol:
     - inject
-    - reduce
+    - map
 
 Style/ColonMethodCall:
   Description: 'Do not use :: for method call.'
@@ -3918,6 +3984,7 @@ Style/EmptyCaseCondition:
   Enabled: true
   VersionAdded: '0.40'
 
+# Updated AllowComments to true
 Style/EmptyElse:
   Description: 'Avoid empty else-clauses.'
   Enabled: true
@@ -3932,7 +3999,7 @@ Style/EmptyElse:
     - empty
     - nil
     - both
-  AllowComments: false
+  AllowComments: true
 
 Style/EmptyHeredoc:
   Description: 'Checks for using empty heredoc to reduce redundancy.'
@@ -3953,6 +4020,7 @@ Style/EmptyLiteral:
   VersionAdded: '0.9'
   VersionChanged: '0.12'
 
+# Updated EnforcedStyle to expanded
 Style/EmptyMethod:
   Description: 'Checks the formatting of empty method definitions.'
   StyleGuide: '#no-single-line-methods'
@@ -3960,7 +4028,7 @@ Style/EmptyMethod:
   AutoCorrect: contextual
   VersionAdded: '0.46'
   VersionChanged: '1.61'
-  EnforcedStyle: compact
+  EnforcedStyle: expanded
   SupportedStyles:
     - compact
     - expanded
@@ -4121,10 +4189,11 @@ Style/FormatString:
     - sprintf
     - percent
 
+# Updated EnforcedStyle to template
 Style/FormatStringToken:
   Description: 'Use a consistent style for format string tokens.'
   Enabled: true
-  EnforcedStyle: annotated
+  EnforcedStyle: template
   SupportedStyles:
     # Prefer tokens which contain a sprintf like type annotation like
     # `%<name>s`, `%<age>d`, `%<score>f`
@@ -4332,12 +4401,13 @@ Style/IfInsideElse:
   VersionAdded: '0.36'
   VersionChanged: '1.3'
 
+# Updated Enabled to false
 Style/IfUnlessModifier:
   Description: >-
                  Favor modifier if/unless usage when you have a
                  single-line body.
   StyleGuide: '#if-as-a-modifier'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.9'
   VersionChanged: '0.30'
 
@@ -4363,11 +4433,12 @@ Style/IfWithSemicolon:
   VersionAdded: '0.9'
   VersionChanged: '0.83'
 
+# Updated Enabled to true
 Style/ImplicitRuntimeError:
   Description: >-
                  Use `raise` or `fail` with an explicit exception class and
                  message, rather than just a message.
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.41'
 
 Style/InPatternThen:
@@ -4386,9 +4457,10 @@ Style/InfiniteLoop:
   VersionAdded: '0.26'
   VersionChanged: '0.61'
 
+# Updated Enabled to true
 Style/InlineComment:
   Description: 'Avoid trailing inline comments.'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.23'
 
 Style/InverseMethods:
@@ -4414,9 +4486,10 @@ Style/InverseMethods:
     :select: :reject
     :select!: :reject!
 
+# Updated Enabled to true
 Style/InvertibleUnlessCondition:
   Description: 'Favor `if` with inverted condition over `unless`.'
-  Enabled: false
+  Enabled: true
   Safe: false
   VersionAdded: '1.44'
   VersionChanged: '1.50'
@@ -4437,9 +4510,10 @@ Style/InvertibleUnlessCondition:
     :even?: :odd?
     :odd?: :even?
 
+#Update Enabled to true
 Style/IpAddresses:
   Description: "Don't include literal IP addresses in code."
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.58'
   VersionChanged: '0.91'
   # Allow addresses to be permitted
@@ -4482,13 +4556,14 @@ Style/KeywordParametersOrder:
   VersionAdded: '0.90'
   VersionChanged: '1.7'
 
+# Updated EnforcedStyle to literal
 Style/Lambda:
   Description: 'Use the new lambda literal syntax for single-line blocks.'
   StyleGuide: '#lambda-multi-line'
   Enabled: true
   VersionAdded: '0.9'
   VersionChanged: '0.40'
-  EnforcedStyle: line_count_dependent
+  EnforcedStyle: literal
   SupportedStyles:
     - line_count_dependent
     - lambda
@@ -4587,10 +4662,11 @@ Style/MethodCallWithoutArgsParentheses:
   VersionAdded: '0.47'
   VersionChanged: '0.55'
 
+# Updated Enabled to true
 Style/MethodCalledOnDoEndBlock:
   Description: 'Avoid chaining a method call on a do...end block.'
   StyleGuide: '#single-line-blocks'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.14'
 
 Style/MethodDefParentheses:
@@ -4714,9 +4790,10 @@ Style/MultilineMemoization:
     - keyword
     - braces
 
+# Updated Enabled to true
 Style/MultilineMethodSignature:
   Description: 'Avoid multi-line method signatures.'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.59'
   VersionChanged: '1.7'
 
@@ -4906,11 +4983,12 @@ Style/Not:
   VersionAdded: '0.9'
   VersionChanged: '0.20'
 
+# Updated Enabled to true and changed to disallow
 Style/NumberedParameters:
   Description: 'Restrict the usage of numbered parameters.'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.22'
-  EnforcedStyle: allow_single_line
+  EnforcedStyle: disallow
   SupportedStyles:
     - allow_single_line
     - disallow
@@ -5208,9 +5286,10 @@ Style/RedundantConditional:
   Enabled: true
   VersionAdded: '0.50'
 
+# Updated Enabled to true, can remove this note when this is default enabled
 Style/RedundantConstantBase:
   Description: Avoid redundant `::` prefix on constant.
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.40'
 
 Style/RedundantCurrentDirectoryInPath:
@@ -5430,9 +5509,10 @@ Style/RescueStandardError:
     - implicit
     - explicit
 
+# Updated Enabled to true
 Style/ReturnNil:
   Description: 'Use return instead of return nil.'
-  Enabled: false
+  Enabled: true
   EnforcedStyle: return
   SupportedStyles:
     - return
@@ -5512,17 +5592,19 @@ Style/Semicolon:
   # Allow `;` to separate several expressions on the same line.
   AllowAsExpressionSeparator: false
 
+# Updated Enabled to true
 Style/Send:
   Description: 'Prefer `Object#__send__` or `Object#public_send` to `send`, as `send` may overlap with existing methods.'
   StyleGuide: '#prefer-public-send'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.33'
 
+# Updated Enabled to true and disallow sending
 Style/SendWithLiteralMethodName:
   Description: 'Detects the use of the `public_send` method with a static method name argument.'
-  Enabled: pending
+  Enabled: true
   Safe: false
-  AllowSend: true
+  AllowSend: false
   VersionAdded: '1.64'
 
 Style/SignalException:
@@ -5556,19 +5638,21 @@ Style/SingleLineBlockParams:
         - acc
         - elem
 
+# Updated Enabled to true
 Style/SingleLineDoEndBlock:
   Description: 'Checks for single-line `do`...`end` blocks.'
   StyleGuide: '#single-line-do-end-block'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.57'
 
+# Updated AllowIfMethodIsEmpty to false
 Style/SingleLineMethods:
   Description: 'Avoid single-line methods.'
   StyleGuide: '#no-single-line-methods'
   Enabled: true
   VersionAdded: '0.9'
   VersionChanged: '1.8'
-  AllowIfMethodIsEmpty: true
+  AllowIfMethodIsEmpty: false
 
 Style/SlicingWithRange:
   Description: 'Checks array slicing is done with redundant, endless, and beginless ranges when suitable.'
@@ -5610,10 +5694,11 @@ Style/StabbyLambdaParentheses:
     - require_parentheses
     - require_no_parentheses
 
+# Updated Enabled to true
 Style/StaticClass:
   Description: 'Prefer modules to classes with only class methods.'
   StyleGuide: '#modules-vs-classes'
-  Enabled: false
+  Enabled: true
   Safe: false
   VersionAdded: '1.3'
 
@@ -5639,10 +5724,11 @@ Style/StringConcatenation:
   VersionChanged: '1.18'
   Mode: aggressive
 
+# Updated Enabled to true
 Style/StringHashKeys:
   Description: 'Prefer symbols instead of strings as hash keys.'
   StyleGuide: '#symbols-as-keys'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.52'
   VersionChanged: '0.75'
   Safe: false
@@ -5672,9 +5758,10 @@ Style/StringLiteralsInInterpolation:
     - single_quotes
     - double_quotes
 
+# Updated Enabled to true
 Style/StringMethods:
   Description: 'Checks if configured preferred methods are used over non-preferred.'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.34'
   VersionChanged: '0.34'
   # Mapping from undesired method to desired_method
@@ -5699,9 +5786,10 @@ Style/StructInheritance:
   VersionAdded: '0.29'
   VersionChanged: '1.20'
 
+# Updated Enabled to true
 Style/SuperArguments:
   Description: 'Call `super` without arguments and parentheses when the signature is identical.'
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.64'
 
 Style/SuperWithArgsParentheses:
@@ -5781,7 +5869,7 @@ Style/TrailingBodyOnModule:
   Enabled: true
   VersionAdded: '0.53'
 
-# Updated EnforcedStyleForMultiline to comma
+# Updated EnforcedStyleForMultiline to consistent_comma
 Style/TrailingCommaInArguments:
   Description: 'Checks for trailing comma in argument lists.'
   StyleGuide: '#no-trailing-params-comma'
@@ -5791,13 +5879,13 @@ Style/TrailingCommaInArguments:
   # parenthesized method calls where each argument is on its own line.
   # If `consistent_comma`, the cop requires a comma after the last argument,
   # for all parenthesized method calls with arguments.
-  EnforcedStyleForMultiline: comma
+  EnforcedStyleForMultiline: consistent_comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
     - no_comma
 
-# Updated EnforcedStyleForMultiline to comma
+# Updated EnforcedStyleForMultiline to consistent_comma
 Style/TrailingCommaInArrayLiteral:
   Description: 'Checks for trailing comma in array literals.'
   StyleGuide: '#no-trailing-array-commas'
@@ -5809,7 +5897,7 @@ Style/TrailingCommaInArrayLiteral:
   # array literals.
   # If `diff_comma`, the cop requires a comma after the last item of all non-empty, multiline array
   # literals, but only when that last item immediately precedes a newline.
-  EnforcedStyleForMultiline: comma
+  EnforcedStyleForMultiline: consistent_comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
@@ -5822,7 +5910,7 @@ Style/TrailingCommaInBlockArgs:
   Safe: false
   VersionAdded: '0.81'
 
-# Updated EnforcedStyleForMultiline to true
+# Updated EnforcedStyleForMultiline to consistent_comma
 Style/TrailingCommaInHashLiteral:
   Description: 'Checks for trailing comma in hash literals.'
   Enabled: true
@@ -5832,7 +5920,7 @@ Style/TrailingCommaInHashLiteral:
   # hash literals.
   # If `diff_comma`, the cop requires a comma after the last item of all non-empty, multiline hash
   # literals, but only when that last item immediately precedes a newline.
-  EnforcedStyleForMultiline: comma
+  EnforcedStyleForMultiline: consistent_comma
   SupportedStylesForMultiline:
     - comma
     - consistent_comma
@@ -5909,10 +5997,11 @@ Style/UnlessElse:
   Enabled: true
   VersionAdded: '0.9'
 
+# Updated Enabled to true
 Style/UnlessLogicalOperators:
   Description: >-
                  Checks for use of logical operators in an unless condition.
-  Enabled: false
+  Enabled: true
   VersionAdded: '1.11'
   EnforcedStyle: forbid_mixed_logical_operators
   SupportedStyles:
