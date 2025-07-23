@@ -1,23 +1,18 @@
 # Common configuration.
 # Taken from rubocop 1.75.7
 
-# Plugins used by all Fractured Atlas apps
+# For the moment, only adding rubocop-rails to lighten this initial load
 plugins:
-  - rubocop-capybara
-  - rubocop-factory_bot
-  - rubocop-rails
-  - rubocop-rspec
-  - rubocop-rspec_rails
+    - rubocop-rails
 
-# Changes from rubocop-rails defaults
-Rails/HasManyOrHasOneDependent:
-  Enabled: false
-Rails/InverseOf:
-  Enabled: false
+# # These plugins are used by all Fractured Atlas apps
+# plugins:
+#   - rubocop-capybara
+#   - rubocop-factory_bot
+#   - rubocop-rails
+#   - rubocop-rspec
+#   - rubocop-rspec_rails
 
-# Common configuration.
-
-# Updated ActiveSupportExtensionsEnabled to true
 AllCops:
   RubyInterpreters:
     - ruby
@@ -179,14 +174,12 @@ AllCops:
   SuggestExtensions:
     rubocop-rails: [rails]
     rubocop-rspec: [rspec, rspec-rails]
-    rubocop-minitest: [minitest]
-    rubocop-sequel: [sequel]
     rubocop-rake: [rake]
-    rubocop-graphql: [graphql]
     rubocop-capybara: [capybara]
     rubocop-factory_bot: [factory_bot, factory_bot_rails]
     rubocop-rspec_rails: [rspec-rails]
   # Enable/Disable checking the methods extended by Active Support.
+  # Updated ActiveSupportExtensionsEnabled to true
   ActiveSupportExtensionsEnabled: true
   # Future version of Ruby will freeze string literals by default.
   # This allows to opt in early, for example when enabled through RUBYOPT.
@@ -2770,7 +2763,7 @@ Metrics/AbcSize:
   CountRepeatedAttributes: false
   Max: 17
 
-# Modified CountAsOne
+# Modified CountAsOne and AllowedMethods
 Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'
   Enabled: true
@@ -2783,6 +2776,7 @@ Metrics/BlockLength:
     # By default, exclude the `#refine` method, as it tends to have larger
     # associated blocks.
     - refine
+    - describe
   AllowedPatterns: []
   Exclude:
     - '**/*.gemspec'
@@ -3129,7 +3123,7 @@ Naming/MethodParameterName:
   ForbiddenNames: []
 
 # Remove has_/have_ from NamePrefix and ForbiddenPrefixes
-Naming/PredicateName:
+Naming/PredicatePrefix:
   Description: 'Check the names of predicate methods.'
   StyleGuide: '#bool-methods-qmark'
   Enabled: true
@@ -6107,3 +6101,9 @@ Style/ZeroLengthPredicate:
   Safe: false
   VersionAdded: '0.37'
   VersionChanged: '0.39'
+
+# Changes from rubocop-rails defaults
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Rails/InverseOf:
+  Enabled: false
