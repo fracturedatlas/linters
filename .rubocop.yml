@@ -171,13 +171,7 @@ AllCops:
   # rubocop is run. Keys are the name of the extension, and values are an array
   # of gems in the Gemfile that the extension is suggested for, if not already
   # included.
-  SuggestExtensions:
-    rubocop-rails: [rails]
-    rubocop-rspec: [rspec, rspec-rails]
-    rubocop-rake: [rake]
-    rubocop-capybara: [capybara]
-    rubocop-factory_bot: [factory_bot, factory_bot_rails]
-    rubocop-rspec_rails: [rspec-rails]
+  SuggestExtensions: false
   # Enable/Disable checking the methods extended by Active Support.
   # Updated ActiveSupportExtensionsEnabled to true
   ActiveSupportExtensionsEnabled: true
@@ -6106,4 +6100,6 @@ Style/ZeroLengthPredicate:
 Rails/HasManyOrHasOneDependent:
   Enabled: false
 Rails/InverseOf:
+  Enabled: false
+Rails/Output:
   Enabled: false
