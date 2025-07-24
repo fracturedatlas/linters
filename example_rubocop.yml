@@ -3,14 +3,13 @@ inherit_from:
 
 AllCops:
   # Only use x.y format. Do not include patch version.
-  TargetRubyVersion: 3.1
-  TargetRailsVersion: 7.1
-  # Keep this in sync with .codeclimate.yml in linters
+  TargetRubyVersion: 3.4
+  TargetRailsVersion: 8.0
   Exclude:
-    - "bin/**/*"
-    - "config/**/*"
-    - "db/**/*"
-    - "node_modules/**/*"
-    - "script/**/*"
-    - "spec/**/*"
-    - "vendor/**/*"
+    - bin/**/*
+    - config/**/*
+    - db/**/*
+    - node_modules/**/*
+    - script/**/*
+    - spec/**/*
+    - vendor/**/*
