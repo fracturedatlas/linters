@@ -78,9 +78,6 @@ mode = "comment"
 name = "osv-scanner"
 
 [[plugin]]
-name = "prettier"
-
-[[plugin]]
 name = "ripgrep"
 mode = "comment"
 
