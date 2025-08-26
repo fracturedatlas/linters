@@ -77,6 +77,10 @@ mode = "comment"
 [[plugin]]
 name = "osv-scanner"
 
+# [[plugin]]
+# name = "prettier"
+# mode = "disabled"
+
 [[plugin]]
 name = "ripgrep"
 mode = "comment"
@@ -90,6 +94,9 @@ extra_packages = [
   "rubocop-rails@2.32.0",
   "rubocop-rspec@3.6.0",
   "rubocop-rspec_rails@2.31.0",
+]
+drivers = [
+  "lint",
 ]
 
 [[plugin]]
