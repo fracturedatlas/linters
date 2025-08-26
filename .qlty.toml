@@ -77,6 +77,10 @@ mode = "comment"
 [[plugin]]
 name = "osv-scanner"
 
+# [[plugin]]
+# name = "prettier"
+# mode = "disabled"
+
 [[plugin]]
 name = "ripgrep"
 mode = "comment"
