@@ -116,8 +116,6 @@ AllCops:
   # in this file are enabled by default. Cops can still be disabled in user configuration.
   # Note that it is invalid to set both EnabledByDefault and DisabledByDefault
   # to true in the same configuration.
-  EnabledByDefault: false
-  DisabledByDefault: false
   # New cops introduced between major versions are set to a special pending status
   # and are not enabled by default with warning message.
   # Change this behavior by overriding either `NewCops: enable` or `NewCops: disable`.
@@ -158,7 +156,7 @@ AllCops:
   # or gems.rb file, RuboCop reads the final value from the lock file.) If the
   # Ruby version is still unresolved, RuboCop will use the oldest officially
   # supported Ruby version (currently Ruby 2.7).
-  TargetRubyVersion: ~
+  TargetRubyVersion: 4.0
   # RuboCop choses the parser engine automatically but you can also specify it yourself.
   # These options are available:
   # - `default`
@@ -166,7 +164,7 @@ AllCops:
   # - `parser_prism` ... https://github.com/ruby/prism (`Prism::Translation::Parser`)
   # Not every parser engine can handle every `TargetRubyVersion`. `parser_whitequark`
   # only works with versions 3.4 and below, `parser_prism` with versions 3.3 and above.
-  ParserEngine: default
+  ParserEngine: parser_prism
   # Determines if a notification for extension libraries should be shown when
   # rubocop is run. Keys are the name of the extension, and values are an array
   # of gems in the Gemfile that the extension is suggested for, if not already
@@ -179,7 +177,7 @@ AllCops:
   # This allows to opt in early, for example when enabled through RUBYOPT.
   # For now this will behave as if set to false but in future ruby versions
   # (likely 4.0) it will be true by default.
-  StringLiteralsFrozenByDefault: ~
+  StringLiteralsFrozenByDefault: true
 
 #################### Bundler ###############################
 
@@ -281,7 +279,7 @@ Gemspec/AddRuntimeDependency:
   StyleGuide: '#add_dependency_vs_add_runtime_dependency'
   References:
     - https://github.com/rubygems/rubygems/issues/7799#issuecomment-2192720316
-  Enabled: pending
+  Enabled: false
   VersionAdded: '1.65'
   Include:
     - '**/*.gemspec'
@@ -300,7 +298,7 @@ Gemspec/DependencyVersion:
 
 Gemspec/DeprecatedAttributeAssignment:
   Description: Checks that deprecated attribute assignments are not set in a gemspec file.
-  Enabled: pending
+  Enabled: true
   Severity: warning
   VersionAdded: '1.30'
   VersionChanged: '1.40'
@@ -309,7 +307,7 @@ Gemspec/DeprecatedAttributeAssignment:
 
 Gemspec/DevelopmentDependencies:
   Description: Checks that development dependencies are specified in Gemfile rather than gemspec.
-  Enabled: pending
+  Enabled: true
   VersionAdded: '1.44'
   EnforcedStyle: Gemfile
   SupportedStyles:
@@ -345,7 +343,7 @@ Gemspec/OrderedDependencies:
 
 Gemspec/RequireMFA:
   Description: 'Checks that the gemspec has metadata to require Multi-Factor Authentication from RubyGems.'
-  Enabled: pending
+  Enabled: false
   Severity: warning
   VersionAdded: '1.23'
   VersionChanged: '1.40'
@@ -2771,6 +2769,8 @@ Metrics/BlockLength:
     # associated blocks.
     - refine
     - describe
+    - namespace
+    - task 
   AllowedPatterns: []
   Exclude:
     - '**/*.gemspec'
@@ -6102,4 +6102,6 @@ Rails/HasManyOrHasOneDependent:
 Rails/InverseOf:
   Enabled: false
 Rails/Output:
+  Enabled: false
+Rails/RakeEnvironment:
   Enabled: false
