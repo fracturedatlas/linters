@@ -2770,7 +2770,8 @@ Metrics/BlockLength:
     - refine
     - describe
     - namespace
-    - task 
+    - task
+    - 
   AllowedPatterns: []
   Exclude:
     - '**/*.gemspec'

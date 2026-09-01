@@ -19,10 +19,10 @@ detectors:
   DuplicateMethodCall:
     enabled: true
     exclude: []
-    max_calls: 1
+    max_calls: 3
     allow_calls: []
   FeatureEnvy:
-    enabled: true
+    enabled: false
     exclude: []
   InstanceVariableAssumption:
     enabled: true
@@ -126,7 +126,7 @@ detectors:
   UtilityFunction:
     enabled: true
     exclude: []
-    public_methods_only: false
+    public_methods_only: true
 
 # Taken from https://github.com/troessner/reek/blob/master/README.md#working-with-rails
 directories:
