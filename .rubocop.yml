@@ -4627,18 +4627,18 @@ Style/MapToSet:
 Style/MethodCallWithArgsParentheses:
   Description: 'Use parentheses for method calls with arguments.'
   StyleGuide: '#method-invocation-parens'
-  Enabled: false
+  Enabled: true
   VersionAdded: '0.47'
   VersionChanged: '1.7'
   IgnoreMacros: true
   AllowedMethods: []
   AllowedPatterns: []
   IncludedMacros: []
-  AllowParenthesesInMultilineCall: false
-  AllowParenthesesInChaining: false
-  AllowParenthesesInCamelCaseMethod: false
-  AllowParenthesesInStringInterpolation: false
-  EnforcedStyle: require_parentheses
+  AllowParenthesesInMultilineCall: true
+  AllowParenthesesInChaining: true
+  AllowParenthesesInCamelCaseMethod: true
+  AllowParenthesesInStringInterpolation: true
+  EnforcedStyle: omit_parentheses
   SupportedStyles:
     - require_parentheses
     - omit_parentheses
