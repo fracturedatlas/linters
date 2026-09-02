@@ -4627,7 +4627,7 @@ Style/MapToSet:
 Style/MethodCallWithArgsParentheses:
   Description: 'Use parentheses for method calls with arguments.'
   StyleGuide: '#method-invocation-parens'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.47'
   VersionChanged: '1.7'
   IgnoreMacros: true
