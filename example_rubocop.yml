@@ -2,6 +2,11 @@ inherit_from:
   - https://raw.githubusercontent.com/fracturedatlas/linters/main/.rubocop.yml
 
 AllCops:
+  Include:
+    - '**/*.rb'
+    - '**/*.rake'
+    - '**/*.gemspec'
+    - '**/Rakefile'
   # Only use x.y format. Do not include patch version.
   TargetRubyVersion: 4.0
   TargetRailsVersion: 8.0
