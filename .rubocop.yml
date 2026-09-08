@@ -5298,10 +5298,11 @@ Style/RedundantEach:
   Safe: false
   VersionAdded: '1.38'
 
+# Updated Enabled to false
 Style/RedundantException:
   Description: "Checks for an obsolete RuntimeException argument in raise/fail."
   StyleGuide: '#no-explicit-runtimeerror'
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.14'
   VersionChanged: '0.29'
 
