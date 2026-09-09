@@ -5,6 +5,10 @@ AllCops:
   # Only use x.y format. Do not include patch version.
   TargetRubyVersion: 4.0
   TargetRailsVersion: 8.0
+  # Include/Exclude patterns must live in this project-local file, not in the
+  # shared config — URL-inherited patterns resolve against the rubocop cache
+  # dir and match nothing. Include can rely on rubocop's defaults; add
+  # project-specific Exclude entries to this list as needed.
   Exclude:
     - bin/**/*
     - config/**/*
