@@ -2716,7 +2716,7 @@ Metrics/BlockLength:
     - describe
     - namespace
     - task
-    - 
+    - class_methods
   AllowedPatterns: []
   Exclude:
     - '**/*.gemspec'
@@ -6052,4 +6052,6 @@ Rails/InverseOf:
 Rails/Output:
   Enabled: false
 Rails/RakeEnvironment:
+  Enabled: false
+Rails/I18nLocaleTexts:
   Enabled: false
