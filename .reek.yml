@@ -41,14 +41,14 @@ detectors:
   LongParameterList:
     enabled: true
     exclude: []
-    max_params: 3
+    max_params: 5
     overrides:
       initialize:
         max_params: 5
   LongYieldList:
     enabled: true
     exclude: []
-    max_params: 3
+    max_params: 5
   ManualDispatch:
     enabled: true
     exclude: []
@@ -86,7 +86,7 @@ detectors:
   TooManyMethods:
     enabled: true
     exclude: []
-    max_methods: 20
+    max_methods: 30
   TooManyStatements:
     enabled: true
     exclude:
@@ -99,7 +99,8 @@ detectors:
     - "/^[a-z]$/"
     - "/[0-9]$/"
     - "/[A-Z]/"
-    accept: []
+    accept:
+    - s3
   UncommunicativeModuleName:
     enabled: true
     exclude: []

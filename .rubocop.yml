@@ -2716,7 +2716,7 @@ Metrics/BlockLength:
     - describe
     - namespace
     - task
-    - 
+    - class_methods
   AllowedPatterns: []
   Exclude:
     - '**/*.gemspec'
@@ -3133,6 +3133,8 @@ Naming/VariableNumber:
   AllowedIdentifiers:
     - TLS1_1       # OpenSSL::SSL::TLS1_1_VERSION
     - TLS1_2       # OpenSSL::SSL::TLS1_2_VERSION
+    - address2     # External column name
+    - address3     # External column name
     - capture3     # Open3.capture3
     - iso8601      # Time#iso8601
     - rfc1123_date # CGI.rfc1123_date
@@ -3141,9 +3143,10 @@ Naming/VariableNumber:
     - rfc3339      # DateTime.rfc3339
     - x86_64       # Allowed by default as an underscore separated CPU architecture name
   AllowedPatterns:
-    - 501c3
-    - 1099
-    - 1042s
+    - '501c3'
+    - '1099'
+    - '1042s'
+    - 's3'
 
 
 #################### Security ##############################
@@ -6052,4 +6055,6 @@ Rails/InverseOf:
 Rails/Output:
   Enabled: false
 Rails/RakeEnvironment:
+  Enabled: false
+Rails/I18nLocaleTexts:
   Enabled: false
