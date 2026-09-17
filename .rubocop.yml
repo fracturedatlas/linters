@@ -5658,11 +5658,14 @@ Style/StringConcatenation:
   VersionChanged: '1.18'
   Mode: aggressive
 
-# Updated Enabled to true
+# Updated Enabled to true, autocorrect disabled: string keys often match
+# external data (jsonb columns, DB values, params) and symbolizing them
+# changes behavior.
 Style/StringHashKeys:
   Description: 'Prefer symbols instead of strings as hash keys.'
   StyleGuide: '#symbols-as-keys'
   Enabled: true
+  AutoCorrect: false
   VersionAdded: '0.52'
   VersionChanged: '0.75'
   Safe: false
