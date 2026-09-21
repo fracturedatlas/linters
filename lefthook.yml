@@ -1,0 +1,4 @@
+pre-commit:
+  commands:
+    deviations-marked:
+      run: bundle exec ruby bin/find_deviations.rb
