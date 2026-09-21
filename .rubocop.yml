@@ -331,6 +331,7 @@ Layout/AccessModifierIndentation:
   # but it can be overridden by setting this parameter.
   IndentationWidth: ~
 
+# Updated EnforcedStyle to with_fixed_indentation
 Layout/ArgumentAlignment:
   Description: >-
                  Align the arguments of a method call if they span more
@@ -574,6 +575,7 @@ Layout/ElseAlignment:
   Enabled: false
   VersionAdded: '0.49'
 
+# Updated AllowBorderComment and AllowMarginComment to false
 Layout/EmptyComment:
   Description: 'Checks empty comment.'
   Enabled: true
@@ -1356,6 +1358,7 @@ Layout/SpaceAroundBlockParameters:
     - no_space
 
 # Updted EnforcedStyle to no_space
+# Updated EnforcedStyle to no_space
 Layout/SpaceAroundEqualsInParameterDefault:
   Description: >-
                  Checks that the equals signs in parameter default assignments
@@ -2430,6 +2433,7 @@ Lint/ShadowedException:
   Enabled: true
   VersionAdded: '0.41'
 
+# Updated Enabled to true
 Lint/ShadowingOuterLocalVariable:
   Description: >-
                  Do not use the same name as outer local variable
@@ -2701,6 +2705,7 @@ Metrics/AbcSize:
   Max: 17
 
 # Modified CountAsOne and AllowedMethods
+# Updated CountAsOne and AllowedMethods
 Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'
   Enabled: true
@@ -2879,6 +2884,7 @@ Naming/ConstantName:
   Enabled: true
   VersionAdded: '0.50'
 
+# Updated Exclude
 Naming/FileName:
   Description: 'Use snake_case for source file names.'
   StyleGuide: '#snake-case-files'
@@ -3064,6 +3070,7 @@ Naming/MethodParameterName:
   ForbiddenNames: []
 
 # Remove has_/have_ from NamePrefix and ForbiddenPrefixes
+# Updated NamePrefix and ForbiddenPrefixes to drop has_/have_
 Naming/PredicatePrefix:
   Description: 'Check the names of predicate methods.'
   StyleGuide: '#bool-methods-qmark'
@@ -4444,6 +4451,7 @@ Style/InvertibleUnlessCondition:
     :odd?: :even?
 
 #Update Enabled to true
+# Updated Enabled to true
 Style/IpAddresses:
   Description: "Don't include literal IP addresses in code."
   Enabled: true
@@ -4567,6 +4575,7 @@ Style/MapToSet:
   Safe: false
   VersionAdded: '1.42'
 
+# Updated EnforcedStyle to omit_parentheses plus AllowParentheses options
 Style/MethodCallWithArgsParentheses:
   Description: 'Use parentheses for method calls with arguments.'
   StyleGuide: '#method-invocation-parens'
@@ -5661,6 +5670,7 @@ Style/StringConcatenation:
 # Updated Enabled to true, autocorrect disabled: string keys often match
 # external data (jsonb columns, DB values, params) and symbolizing them
 # changes behavior.
+# Updated Enabled to true
 Style/StringHashKeys:
   Description: 'Prefer symbols instead of strings as hash keys.'
   StyleGuide: '#symbols-as-keys'
