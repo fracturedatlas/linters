@@ -18,3 +18,9 @@ AllCops:
     - script/**/*
     - spec/**/*
     - vendor/**/*
+
+# Path excludes must live project-local — URL-inherited patterns resolve
+# against rubocop's cache dir and match nothing.
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - app/controllers/concerns/**/*
