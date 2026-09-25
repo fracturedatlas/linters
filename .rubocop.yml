@@ -1191,7 +1191,7 @@ Layout/MultilineHashKeyLineBreaks:
   VersionAdded: '0.67'
   AllowMultilineFinalElement: false
 
-# Updated Enabled to false (replaced by ExceptLambdas below)
+# Updated Enabled to false
 Layout/MultilineMethodArgumentLineBreaks:
   Description: >-
                  Checks that each argument in a multi-line method call
@@ -1199,13 +1199,6 @@ Layout/MultilineMethodArgumentLineBreaks:
   Enabled: false
   VersionAdded: '0.67'
   AllowMultilineFinalElement: false
-
-# From the unifractured gem — identical to the stock cop above, except calls
-# whose arguments include a lambda literal (-> { ... }) or a block pass are
-# exempt: those arguments carry a code body rather than a data value, so the
-# call keeps its signature and block opener on one line.
-Layout/MultilineMethodArgumentLineBreaksExceptLambdas:
-  Enabled: true
 
 Layout/MultilineMethodCallBraceLayout:
   Description: >-
@@ -6077,3 +6070,12 @@ Rails/RakeEnvironment:
   Enabled: false
 Rails/I18nLocaleTexts:
   Enabled: false
+
+# Custom cops from the unifractured gem (not part of rubocop's defaults —
+# kept below the mirror section so diffs against new rubocop defaults stay clean).
+# Identical to Layout/MultilineMethodArgumentLineBreaks, except calls whose
+# arguments include a lambda literal (-> { ... }) or a block pass are exempt:
+# those arguments carry a code body rather than a data value, so the call
+# keeps its signature and block opener on one line.
+Layout/MultilineMethodArgumentLineBreaksExceptLambdas:
+  Enabled: true
