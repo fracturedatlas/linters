@@ -5,6 +5,10 @@
 plugins:
     - rubocop-rails
 
+# Custom cops shipped in the unifractured gem (bundled by every app).
+require:
+  - unifractured/rubocop
+
 # # These plugins are used by all Fractured Atlas apps
 # plugins:
 #   - rubocop-capybara
@@ -1187,14 +1191,21 @@ Layout/MultilineHashKeyLineBreaks:
   VersionAdded: '0.67'
   AllowMultilineFinalElement: false
 
-# Updated Enabled to true
+# Updated Enabled to false (replaced by ExceptLambdas below)
 Layout/MultilineMethodArgumentLineBreaks:
   Description: >-
                  Checks that each argument in a multi-line method call
                  starts on a separate line.
-  Enabled: true
+  Enabled: false
   VersionAdded: '0.67'
   AllowMultilineFinalElement: false
+
+# From the unifractured gem — identical to the stock cop above, except calls
+# whose arguments include a lambda literal (-> { ... }) or a block pass are
+# exempt: those arguments carry a code body rather than a data value, so the
+# call keeps its signature and block opener on one line.
+Layout/MultilineMethodArgumentLineBreaksExceptLambdas:
+  Enabled: true
 
 Layout/MultilineMethodCallBraceLayout:
   Description: >-
