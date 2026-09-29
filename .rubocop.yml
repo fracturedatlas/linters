@@ -4214,6 +4214,7 @@ Style/GuardClause:
   MinBodyLength: 1
   AllowConsecutiveConditionals: false
 
+# Updated EnforcedStyle to `no_braces`
 Style/HashAsLastArrayItem:
   Description: >-
                  Checks for presence or absence of braces around hash literal as a last
@@ -4221,7 +4222,7 @@ Style/HashAsLastArrayItem:
   StyleGuide: '#hash-literal-as-last-array-item'
   Enabled: true
   VersionAdded: '0.88'
-  EnforcedStyle: braces
+  EnforcedStyle: no_braces
   SupportedStyles:
     - braces
     - no_braces
