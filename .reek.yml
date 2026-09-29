@@ -146,9 +146,11 @@ detectors:
     enabled: false
     exclude: []
   # Updated public_methods_only to true
+  # Updated exclude to perform
   UtilityFunction:
     enabled: true
-    exclude: []
+    exclude:
+    - perform
     public_methods_only: true
 
 # Taken from https://github.com/troessner/reek/blob/master/README.md#working-with-rails
