@@ -2715,7 +2715,8 @@ Metrics/BlockLength:
   Enabled: true
   VersionAdded: '0.44'
   VersionChanged: '1.5'
-  CountComments: false  # count full line comments?
+  # count full line comments?
+  CountComments: false
   Max: 25
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   AllowedMethods:
@@ -2746,7 +2747,8 @@ Metrics/ClassLength:
   Enabled: true
   VersionAdded: '0.25'
   VersionChanged: '0.87'
-  CountComments: false  # count full line comments?
+  # count full line comments?
+  CountComments: false
   Max: 300
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
 
@@ -2775,7 +2777,8 @@ Metrics/MethodLength:
   Enabled: true
   VersionAdded: '0.25'
   VersionChanged: '1.5'
-  CountComments: false  # count full line comments?
+  # count full line comments?
+  CountComments: false
   Max: 10
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
   AllowedMethods: []
@@ -2787,7 +2790,8 @@ Metrics/ModuleLength:
   Enabled: true
   VersionAdded: '0.31'
   VersionChanged: '0.87'
-  CountComments: false  # count full line comments?
+  # count full line comments?
+  CountComments: false
   Max: 100
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
 
@@ -3142,17 +3146,28 @@ Naming/VariableNumber:
   CheckMethodNames: true
   CheckSymbols: true
   AllowedIdentifiers:
-    - TLS1_1       # OpenSSL::SSL::TLS1_1_VERSION
-    - TLS1_2       # OpenSSL::SSL::TLS1_2_VERSION
-    - address2     # External column name
-    - address3     # External column name
-    - capture3     # Open3.capture3
-    - iso8601      # Time#iso8601
-    - rfc1123_date # CGI.rfc1123_date
-    - rfc822       # Time#rfc822
-    - rfc2822      # Time#rfc2822
-    - rfc3339      # DateTime.rfc3339
-    - x86_64       # Allowed by default as an underscore separated CPU architecture name
+    # OpenSSL::SSL::TLS1_1_VERSION
+    - TLS1_1
+    # OpenSSL::SSL::TLS1_2_VERSION
+    - TLS1_2
+    # External column name
+    - address2
+    # External column name
+    - address3
+    # Open3.capture3
+    - capture3
+    # Time#iso8601
+    - iso8601
+    # CGI.rfc1123_date
+    - rfc1123_date
+    # Time#rfc822
+    - rfc822
+    # Time#rfc2822
+    - rfc2822
+    # DateTime.rfc3339
+    - rfc3339
+    # Allowed by default as an underscore separated CPU architecture name
+    - x86_64
   AllowedPatterns:
     - '501c3'
     - '1099'
@@ -5117,8 +5132,10 @@ Style/PercentQLiterals:
   VersionAdded: '0.25'
   EnforcedStyle: lower_case_q
   SupportedStyles:
-    - lower_case_q # Use `%q` when possible, `%Q` when necessary
-    - upper_case_q # Always use `%Q`
+    # Use `%q` when possible, `%Q` when necessary
+    - lower_case_q
+    # Always use `%Q`
+    - upper_case_q
 
 Style/PerlBackrefs:
   Description: 'Avoid Perl-style regex back references.'
@@ -5164,8 +5181,10 @@ Style/RaiseArgs:
   VersionChanged: '1.61'
   EnforcedStyle: exploded
   SupportedStyles:
-    - compact # raise Exception.new(msg)
-    - exploded # raise Exception, msg
+    # raise Exception.new(msg)
+    - compact
+    # raise Exception, msg
+    - exploded
   AllowedCompactTypes: []
 
 Style/RandomWithOffset:
