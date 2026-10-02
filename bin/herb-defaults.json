@@ -1,0 +1,700 @@
+{
+  "source": "Extracted from @herb-tools/linter rule defaultConfig getters",
+  "regenerate": "npm install @herb-tools/linter@<version> in a scratch dir, then re-extract; see bin/find_deviations.rb header",
+  "version": "0.11.0",
+  "top_level": {
+    "framework": "ruby",
+    "template_engine": "erubi"
+  },
+  "files_exclude": [
+    "coverage/**/*",
+    "log/**/*",
+    "node_modules/**/*",
+    "storage/**/*",
+    "tmp/**/*",
+    "vendor/**/*"
+  ],
+  "linter": {
+    "enabled": true
+  },
+  "formatter": {
+    "enabled": false,
+    "indentWidth": 2,
+    "indentStyle": "space",
+    "maxLineLength": 80
+  },
+  "rules": {
+    "a11y-avoid-generic-link-text": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "a11y-disabled-attribute": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "a11y-nested-interactive-elements": {
+      "enabled": false,
+      "severity": "error"
+    },
+    "a11y-no-accesskey-attribute": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "a11y-no-aria-label-misuse": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "a11y-no-aria-unsupported-elements": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "a11y-no-autofocus-attribute": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "a11y-no-redundant-image-alt": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "a11y-no-visually-hidden-interactive-elements": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "a11y-svg-has-accessible-text": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "actionview-no-content-argument-with-block": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "actionview-no-dynamic-partial-path": {
+      "enabled": true,
+      "severity": "info"
+    },
+    "actionview-no-helper-shadowing": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "actionview-no-implicit-partial": {
+      "enabled": true,
+      "severity": "info"
+    },
+    "actionview-no-implicit-polymorphic-url": {
+      "enabled": true,
+      "severity": "info"
+    },
+    "actionview-no-mistyped-locals": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "actionview-no-redundant-local-assigns": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "actionview-no-render-option-shadowing": {
+      "enabled": true,
+      "severity": "info"
+    },
+    "actionview-no-silent-helper": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "actionview-no-silent-render": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "actionview-no-strict-locals-error": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "actionview-no-unnecessary-html-safe": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "actionview-no-unnecessary-tag-attributes": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "actionview-no-unused-strict-locals": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "actionview-no-void-element-content": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "actionview-prefer-collection-render": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "actionview-prefer-form-with": {
+      "enabled": true,
+      "severity": "info"
+    },
+    "actionview-prefer-link-to-helper": {
+      "enabled": true,
+      "severity": "info"
+    },
+    "actionview-prefer-pluralize-helper": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "actionview-prefer-qualified-partial-path": {
+      "enabled": true,
+      "severity": "info"
+    },
+    "actionview-strict-locals-first-line": {
+      "enabled": false,
+      "severity": "error"
+    },
+    "actionview-strict-locals-partial-only": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "erb-closing-tag-indent": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-comment-syntax": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-byte-order-mark": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-case-node-children": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-class-definitions": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-commented-out-output-tags": {
+      "enabled": true,
+      "severity": "info"
+    },
+    "erb-no-conditional-html-element": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-conditional-open-tag": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-debug-output": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-duplicate-branch-elements": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "erb-no-empty-control-flow": {
+      "enabled": true,
+      "severity": "hint"
+    },
+    "erb-no-empty-tags": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-extra-newline": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-extra-whitespace-inside-tags": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-inline-case-conditions": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "erb-no-instance-variables-in-partials": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-interpolated-class-names": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "erb-no-javascript-tag-helper": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "erb-no-method-definitions": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-module-definitions": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-multiple-statements": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "erb-no-output-control-flow": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-output-in-attribute-name": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-output-in-attribute-position": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-raw-output-in-attribute-value": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-return": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-shadowed-block-argument": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-silent-statement": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "erb-no-silent-tag-in-attribute-name": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-sleep": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-statement-in-script": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "erb-no-then-in-control-flow": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "erb-no-trailing-whitespace": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-unsafe-js-attribute": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-unsafe-raw": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-unsafe-script-interpolation": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-unused-block-argument": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-unused-expressions": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-unused-literals": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-no-unused-local-variable": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-prefer-direct-output": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-prefer-do-end-blocks": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-prefer-each-over-map": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-prefer-explicit-conditionals": {
+      "enabled": false,
+      "severity": "error"
+    },
+    "erb-prefer-image-tag-helper": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "erb-require-trailing-newline": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-require-whitespace-inside-tags": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-right-trim": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-strict-locals-comment-syntax": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "erb-strict-locals-required": {
+      "enabled": false,
+      "severity": "error"
+    },
+    "herb-component-requires-slots": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-config-framework-option": {
+      "enabled": true,
+      "severity": "info"
+    },
+    "herb-disable-comment-malformed": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-disable-comment-missing-rules": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-disable-comment-no-duplicate-rules": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "herb-disable-comment-no-redundant-all": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "herb-disable-comment-out-of-date": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "herb-disable-comment-unnecessary": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "herb-disable-comment-valid-rule-name": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "herb-into-requires-collection": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-scoped-style-no-unused-selector": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-scoped-style-require-top-level": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "herb-scoped-style-single-declaration": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "herb-slots-single-directive": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-slots-valid-components": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-slots-valid-mode": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-state-directive-syntax": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-state-no-server-writes": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-state-no-shadowed-states": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-state-no-silent-reads": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-state-no-unused-states": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "herb-state-requires-slots": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-state-single-declaration": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "herb-state-valid-actions": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-state-valid-bindings": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-state-valid-declaration": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-state-valid-reads": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "herb-valid-slot-names": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-allowed-script-type": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-anchor-require-href": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-aria-attribute-must-be-valid": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-aria-label-is-well-formatted": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-aria-level-must-be-valid": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-aria-role-heading-requires-level": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-aria-role-must-be-valid": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-attribute-double-quotes": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-attribute-equals-spacing": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-attribute-name-valid-characters": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-attribute-values-require-quotes": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-avoid-both-disabled-and-aria-disabled": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-body-only-elements": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-boolean-attributes-no-value": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-details-has-summary": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-head-only-elements": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-iframe-has-title": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-img-require-alt": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-input-require-autocomplete": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-navigation-has-label": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "html-no-abstract-roles": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-no-aria-hidden-on-body": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-no-aria-hidden-on-focusable": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-no-block-inside-inline": {
+      "enabled": false,
+      "severity": "error"
+    },
+    "html-no-duplicate-attributes": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-no-duplicate-ids": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-no-duplicate-meta-names": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-no-empty-attributes": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-no-empty-css-rule": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-no-empty-headings": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-no-event-handler-attributes": {
+      "enabled": false,
+      "severity": "error"
+    },
+    "html-no-inline-script-elements": {
+      "enabled": false,
+      "severity": "error"
+    },
+    "html-no-literal-nbsp": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-no-nested-forms": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-no-nested-links": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-no-obsolete-tags": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-no-positive-tab-index": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-no-self-closing": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-no-space-in-tag": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-no-style-attributes": {
+      "enabled": false,
+      "severity": "error"
+    },
+    "html-no-style-elements": {
+      "enabled": false,
+      "severity": "error"
+    },
+    "html-no-title-attribute": {
+      "enabled": false,
+      "severity": "warning"
+    },
+    "html-no-underscores-in-attribute-names": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-no-unescaped-entities": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-no-unknown-tag": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "html-require-closing-tags": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-require-script-nonce": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "html-tag-name-lowercase": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "parser-no-errors": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "source-indentation": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "svg-no-deprecated-tags": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "svg-tag-name-capitalization": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "turbo-permanent-no-misleading-value": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "turbo-permanent-require-id": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "ujs-no-remote-attribute": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "ujs-prefer-turbo-confirm": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "ujs-prefer-turbo-method": {
+      "enabled": true,
+      "severity": "warning"
+    },
+    "ujs-prefer-turbo-submits-with": {
+      "enabled": true,
+      "severity": "warning"
+    }
+  }
+}

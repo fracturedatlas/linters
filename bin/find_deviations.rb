@@ -4,11 +4,16 @@
 # deviation whose cop lacks an "# Updated ..." marker comment. Exits 1 when
 # unmarked deviations exist, so lefthook can gate commits on it.
 #
+# Herb defaults come from bin/herb-defaults.json, a snapshot of the
+# @herb-tools/linter rule defaults matching the version pinned in .herb.yml.
+# Regenerate it whenever the pin is bumped (see the JSON's "regenerate" key).
+#
 # Usage: bundle exec ruby bin/find_deviations.rb
 
 require 'rubocop'
 require 'reek'
 require 'yaml'
+require 'json'
 
 ROOT = File.expand_path('..', __dir__)
 METADATA_KEYS = %w[Description StyleGuide References VersionAdded VersionChanged].freeze
@@ -28,19 +33,49 @@ PUNTED = [
   'Style/RedundantCondition',
 ].freeze
 
-# Maps cop names to the marker comment directly above them, e.g.
-# "# Updated Enabled to false".
+# Maps cop/rule names to the marker comment directly above them, e.g.
+# "# Updated Enabled to false". Names may contain hyphens (Herb rules).
 def marked_cops(path)
   marks = {}
   lines = File.readlines(path)
   lines.each_with_index do |line, i|
     next unless line =~ /^\s*#\s*(Updated|Customized)/i
     next_line = lines[i + 1].to_s
-    if (match = next_line.match(%r{\A\s*([\w/]+):\s*$}))
+    if (match = next_line.match(%r{\A\s*([\w/-]+):(?:\s.*)?$}))
       marks[match[1]] = line.strip
     end
   end
   marks
+end
+
+# Config comments belong on their own line above the key, never trailing.
+# Skips block-scalar bodies (Description: > etc.) and '#' inside URLs/words;
+# only a '#' preceded by whitespace and outside double quotes counts.
+def report_trailing_comments(path)
+  count = 0
+  block_indent = nil
+  File.readlines(path).each_with_index do |line, i|
+    if block_indent
+      block_indent = nil if !line.strip.empty? && line !~ /\A {#{block_indent + 1}}/
+      next if block_indent
+    end
+    block_indent = Regexp.last_match(1).length if line =~ /\A(\s*)[\w'"\/-]+:\s*[>|][\w+-]*\s*$/
+    next if line =~ /^\s*#/
+    next unless (idx = trailing_comment_index(line))
+    puts "(trailing comment) #{File.basename(path)}:#{i + 1}: #{line.strip}"
+    count += 1
+  end
+  count
+end
+
+def trailing_comment_index(line)
+  in_single = in_double = false
+  line.chars.each_with_index do |char, i|
+    in_single = !in_single if char == "'" && !in_double
+    in_double = !in_double if char == '"' && !in_single
+    return i if char == '#' && !in_single && !in_double && i.positive? && line[i - 1] =~ /\s/
+  end
+  nil
 end
 
 # The config files store regexes as quoted strings ("/^_$/") where the gem
@@ -124,6 +159,54 @@ reek_config.fetch('detectors', {}).each do |cop, cfg|
   end
 end
 
+herb_path = File.join(ROOT, '.herb.yml')
+herb_config = YAML.safe_load(File.read(herb_path))
+herb_defaults = JSON.parse(File.read(File.join(ROOT, 'bin', 'herb-defaults.json')))
+herb_marks = marked_cops(herb_path)
+
+puts
+puts '=== Herb deviations (.herb.yml) ==='
+
+# Top-level keys whose defaults live in the snapshot.
+herb_defaults['top_level'].each do |key, dval|
+  value = herb_config[key]
+  next if value.nil? || value == dval
+  if herb_marks.key?(key)
+    puts "(herb) #{key} = #{value.inspect} (default: #{dval.inspect})  [marked]"
+  else
+    unmarked += 1
+    puts "(herb) #{key} = #{value.inspect} (default: #{dval.inspect})  [UNMARKED]"
+  end
+end
+
+herb_config.fetch('linter', {}).fetch('rules', {}).each do |rule, cfg|
+  next unless cfg.is_a?(Hash)
+  default = herb_defaults['rules'][rule]
+  unless default
+    puts "(herb) #{rule}: (no such rule in herb-defaults.json — snapshot stale?)"
+    next
+  end
+  cfg.each do |key, value|
+    dval = default[key]
+    next if dval.nil? || normalize(dval).inspect == normalize(value).inspect
+    if herb_marks.key?(rule)
+      puts "(herb) #{rule}.#{key} = #{value.inspect} (default: #{dval.inspect})  [marked]"
+    else
+      unmarked += 1
+      puts "(herb) #{rule}.#{key} = #{value.inspect} (default: #{dval.inspect})  [UNMARKED]"
+    end
+  end
+end
+
+puts
+puts '=== Trailing comments ==='
+trailing = %w[.rubocop.yml .reek.yml .herb.yml].sum do |name|
+  path = File.join(ROOT, name)
+  next 0 unless File.exist?(path)
+  report_trailing_comments(path)
+end
+puts 'None.' if trailing.zero?
+
 puts
 puts unmarked.zero? ? 'All deviations are marked.' : "#{unmarked} unmarked deviation(s)."
-exit unmarked.zero? ? 0 : 1
+exit unmarked.zero? && trailing.zero? ? 0 : 1
