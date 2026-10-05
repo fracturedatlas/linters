@@ -9,6 +9,14 @@ AllCops:
   # shared config — URL-inherited patterns resolve against the rubocop cache
   # dir and match nothing. Include can rely on rubocop's defaults; add
   # project-specific Exclude entries to this list as needed.
+  Include:
+    - '**/*.rb'
+    - '**/*.rake'
+    - '**/*.gemspec'
+    - '**/Rakefile'
+    - '**/Gemfile'
+    - '**/*.ru'
+    - '**/*.jbuilder'
   Exclude:
     - bin/**/*
     - config/**/*

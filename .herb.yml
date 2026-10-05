@@ -255,6 +255,8 @@ linter:
 
     html-no-style-attributes:
       severity: error
+      exclude:
+        - 'app/views/**/*_mailer/**'
 
     html-no-style-elements:
       severity: error
