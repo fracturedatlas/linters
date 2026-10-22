@@ -98,12 +98,12 @@ detectors:
     enabled: true
     exclude: []
     max_methods: 30
-  # Updated max_statements to 6
+  # Updated max_statements to 8 (Reek's stock default; was 5, then 6)
   TooManyStatements:
     enabled: true
     exclude:
     - initialize
-    max_statements: 6
+    max_statements: 8
   # Updated accept to s3
   UncommunicativeMethodName:
     enabled: true
