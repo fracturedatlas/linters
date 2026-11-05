@@ -62,7 +62,15 @@ linter:
 
   rules:
     # Updated severity to error
+    actionview-no-dynamic-partial-path:
+      severity: error
+
+    # Updated severity to error
     actionview-no-helper-shadowing:
+      severity: error
+
+    # Updated severity to error
+    actionview-no-implicit-partial:
       severity: error
 
     # Updated severity to error

@@ -3131,7 +3131,7 @@ Naming/VariableName:
   ForbiddenIdentifiers: []
   ForbiddenPatterns: []
 
-# Updated EnforcedStyle to snake_case and added 501c3, 1099, 1042s to AllowedPatterns
+# Updated EnforcedStyle to snake_case and added 501c3, 1099, 1042s, last4 to AllowedPatterns
 Naming/VariableNumber:
   Description: 'Use the configured style when numbering symbols, methods and variables.'
   StyleGuide: '#snake-case-symbols-methods-vars-with-numbers'
@@ -3173,6 +3173,7 @@ Naming/VariableNumber:
     - '1099'
     - '1042s'
     - 's3'
+    - 'last4'
 
 
 #################### Security ##############################
@@ -6087,6 +6088,9 @@ Rails/InverseOf:
 Rails/Output:
   Enabled: false
 Rails/RakeEnvironment:
+  Enabled: false
+# Updated Enabled to false
+Rails/UniqueValidationWithoutIndex:
   Enabled: false
 Rails/I18nLocaleTexts:
   Enabled: false
