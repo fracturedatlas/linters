@@ -6089,6 +6089,9 @@ Rails/Output:
   Enabled: false
 Rails/RakeEnvironment:
   Enabled: false
+# Updated Enabled to false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
 Rails/I18nLocaleTexts:
   Enabled: false
 
